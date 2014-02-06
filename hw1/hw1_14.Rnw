@@ -1,0 +1,781 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 5 September 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pioI}{\prod_{i=1}^I}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pjoJ}{\prod_{j=1}^J}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\pkoK}{\prod_{k=1}^K}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sioI}{\sum_{i=1}^I}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\sjoJ}{\sum_{j=1}^J}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\skoK}{\sum_{k=1}^K}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.673 Stat Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Problem set 1}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Decision theory and loss functions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\subsection*{Problem 1}
+Among the population, $P$, of women who visit phyisicians for screening for a disease, assume that the screening test has specificity and sensitivity as the one discussed in lecture one, where, here, probability statements mean fractions of women in the population $P$ (for example, specificity of $98\%$ means that, of all true negative women in $P$, $98\%$ would test negative.).
+For a woman $i$, denote $\theta(i) = 1$ if the woman is truly positive, and $2$ if truly negative; and denote $(l_i(a_1), l_i(a_2))$ to be the loss to that woman if treated, or if not treated, respectively (in the last expressions, her true status is captured already in the notation ``i'').
+Suppose that the averages of the losses in the diseased and non-diseased women, if treated and if not treated, are:
+\begin{align*}
+l(1,a_1) &:= E\{l_i(a_1)| \theta(i) = 1\} = 2 \\
+l(1, a_2) &:= E\{l_i(a_2)|\theta(i)=1\} = 5 \\
+l(2, a_1) &:= E\{l_i(a_1)|\theta(i)=2\} = 1 \\
+l(2, a_2) &:= E\{l_i(a_2)|\theta(i)=2\} = 0
+\end{align*}
+but that $l_i$ may generally vary from woman to woman, and that among women of a particular status (diseased, or not diseased), the losses $l_i$ may be correlated with the value $X_i$ that the diagnostic test would show for woman $i$.
+For the strategy $s$ defined as $s(X_i) = a_1$ if $X_i$ is positive, and $s(X_i)=a_2$ if $X_i$ is negative, which of the following conditions 1.-3. would make the losses
+\begin{equation} 
+\label{eq1}
+E\{l_i(s(X_i)) | \theta(i)\} \text{ and } E\{l(\theta(i),s(X_i))| \theta(i)\}
+\end{equation}
+equal and why?
+\begin{enumerate}[1.]
+\item
+For a fixed action $a$, $l_i(a)$ is constant within women of common disease status $\theta(i)$.
+\item
+For a fixed action $a$, $X_i$ is independent 	of $l_i(a)$.
+\item
+For a fixed action $a$, $X_i$ is independent of $l_i(a)$ given $\theta(i)$.
+\end{enumerate}
+
+\begin{proof}
+If $X_i \geq 0$, then $s(X_i) = a_1$ and if $X_i < 0$, then $s(X_i)=a_2$. Thus,
+\[
+l(\theta(i), s(X_i)|\theta_i) = l(\theta(i), a_1) I_{X_i \geq 0} + l(\theta(i), a_2) I_{X_i < 0}
+\]
+Hence, the right-hand side becomes
+\begin{align}
+E\{l(\theta(i), s(X_i)|\theta_i) \sbs \theta(i)\} 
+&= 
+E\{l(\theta(i), a_1) I_{X_i \geq 0} + l(\theta(i), a_2) I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+E\{l(\theta(i), a_1) I_{X_i \geq 0} \sbs \theta(i)\} +
+E\{l(\theta(i), a_2) I_{X_i < 0} \sbs \theta(i)\}
+\end{align}
+Since the expression above is conditioned on $\theta(i)$, the expressions $l(\theta(i), a_1)$ and $l(\theta(i), a_2)$ are constant by hypothesis. The right-hand side can be further simplified to
+\begin{equation}
+%E\{l(\theta(i), s(X_i)|\theta_i) \sbs \theta(i)\}  =
+l(\theta(i), a_1)E\{I_{X_i \geq 0} \sbs \theta(i)\} +
+l(\theta(i), a_2)E\{ I_{X_i < 0} \sbs \theta(i)\}
+\label{rhsSimp}
+\end{equation}
+
+Similarly, the left-hand side can be written as
+\begin{align}
+E\{l_i(s(X_i)) \sbs \theta(i)\} &=
+E\{l_i(a_1)I_{X_i \geq 0} + l_i(a_2) I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+E\{l_i(a_1)I_{X_i \geq 0} \sbs \theta(i)\}
+ + E\{l_i(a_2) I_{X_i < 0} \sbs \theta(i)\}
+\label{lhs}
+\end{align}
+Examine condition 1. For fixed $a$, Let $l_i(a)$ be constant within women of common disease status $\theta(i)$. The expectation of a constant function is that same constant, hence 
+\begin{equation}
+E\{l_i(a) \sbs \theta(i)=j\} = l_i(a) |_{\theta(i)=j}
+\label{const}
+\end{equation}
+Combining \eqref{lhs} with \eqref{const}
+\begin{align}
+E\{l_i(s(X_i)) \sbs \theta(i)\} &=
+E\{l_i(a_1)I_{X_i \geq 0} \sbs \theta(i)\}
+ + E\{l_i(a_2) I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+E\{E\{l_i(a_1) \sbs \theta(i)\}I_{X_i \geq 0} \sbs \theta(i)\}
+ + 
+E\{E\{l_i(a_2) \sbs \theta(i)\}I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+E\{l_i(a_1) \sbs \theta(i)\} E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+E\{l_i(a_2) \sbs \theta(i)\} E\{I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+l(\theta(i), a_1)E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+l(\theta(i), a_2)E\{I_{X_i < 0} \sbs \theta(i)\}
+\label{constSimp}
+\end{align}
+Clearly, \eqref{rhsSimp} and \eqref{constSimp} are the same, and therefore the right- and left-hand sides of \eqref{eq1} are equal given condition one.
+
+Given condition three, for a fixed action $a$, $X_i$ is independent of $l_i(a)$ given $\theta(i)$. Therefore the exents in $\sigma(X_i)$ and $\sigma(l_i(a))$ are independent given $\theta(i)$. 
+Since the expectation of independent events is the production of the expectation of those events, from \eqref{lhs} it follows that
+\begin{align}
+E\{l_i(s(X_i)) \sbs \theta(i)\}
+&=
+E\{l_i(a_1)I_{X_i \geq 0} \sbs \theta(i)\}
++ 
+E\{l_i(a_2) I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+E\{l_i(a_1)\sbs \theta(i)\} E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+E\{l_i(a_2)\sbs \theta(i)\} E\{I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+l(\theta(i), a_1)E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+l(\theta(i), a_2)E\{I_{X_i < 0} \sbs \theta(i)\}
+\label{condIndSimp}
+\end{align}
+Clearly, \eqref{rhsSimp} and \eqref{condIndSimp} are the same, and therefore the right- and left-hand sides of \eqref{eq1} are equal given condition three.
+
+Finally, condition 2 says that for a fixed action $a$, $X_i$ is independent of $l_i(a)$. This however does not imply that conditional on the event $\theta(i)$ that $X_i$ is independent of $l_i(a)$. 
+%http://en.wikipedia.org/wiki/Conditional_independence
+For a counterexample, let $\cup_{i=1}^4 A_i = \Omega$ and let the $A_i$ be disjoint.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c}
+\hline\hline \\[-2.0ex]
+Event & $P$ & X & Y & Z \\ [0.25ex]
+\hline \\[-2.0ex]
+$A_1$ & $P(A_1)=0.25$ & $X=0$ & $Y=0$ & $Z=0$
+\\
+$A_2$ & $P(A_2)=0.25$ & $X=1$ & $Y=0$ & $Z=0$
+\\
+$A_3$ & $P(A_3)=0.25$ & $X=0$ & $Y=1$ & $Z=0$
+\\
+$A_4$ & $P(A_4)=0.25$ & $X=1$ & $Y=1$ & $Z=1$
+\end{tabular}
+\end{table}
+Clearly, $X$ and $Y$ are independent. However, conditional on $Z=0$, 
+\[
+0 = P(X=1 \cap Y=1 \sbs Z=0) \neq P(X=1 \sbs Z=0) P(Y=1 \sbs Z=0) = 1/3^2 = 1/9
+\]
+Therefore, $X$ and $Y$ are not conditionally independent (on $Z$), and it is shown that independence does not in general imply conditional independence. 
+Hence,
+\begin{align}
+E\{l_i(s(X_i)) \sbs \theta(i)\}
+&=
+E\{l_i(a_1)I_{X_i \geq 0} \sbs \theta(i)\}
++ 
+E\{l_i(a_2) I_{X_i < 0} \sbs \theta(i)\}
+\\
+&\neq
+E\{l_i(a_1)\sbs \theta(i)\} E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+E\{l_i(a_2)\sbs \theta(i)\} E\{I_{X_i < 0} \sbs \theta(i)\}
+\\
+&=
+l(\theta(i), a_1)E\{I_{X_i \geq 0} \sbs \theta(i)\}
++
+l(\theta(i), a_2)E\{I_{X_i < 0} \sbs \theta(i)\}
+\end{align}
+Therefore the right- and left-hand sides of \eqref{eq1} are not in general equal given condition two.
+\end{proof}
+
+\subsection*{Problem 2}
+Now assume that the way the test $X_i$ is determined is by measuring a continuous variable $X_i^*$, and calling $X_i$ positive if $X^* > 0$, otherwise calling $X_i$ negative. Assuming that pr$(X_i^* | \theta(i))$ is normal with variance $1$, find $E(X_i^*|\theta(i))$ for the two disease conditions. 
+Also, assume that, for a fixed action $a$, pr$(l_i(a) | \theta(i))$ is normal with the means given above, variance $10$, and that $cor(l_i(a),X_i^*|\theta(i))=0.7$.
+ Using simulation of $1000$ 	diseased and $1000$ non-diseased women, or otherwise, estimate the two average losses in \eqref{eq1}.
+
+\begin{proof}
+From the lecture notes, the specificiy of the test is $0.98$ and the sensitivity is $0.94$. Thus $P( X_i^* > 0 | \theta(i) = 1) = 0.94$. Since we assume a normal distribution, with variance $\sigma^2 = 1$, we have
+\begin{align*}
+0.94 &= P( X^* > 0 | \theta(i) = 1) \\
+0.94 &= P( (X^* - \mu_1) / \sigma > -\mu_1/ \sigma | \theta(i) = 1) \\
+0.94 &= P( Z > -\mu_1 | \theta(i) = 1)
+\end{align*}
+Thus we solve for $\mu_1 = E(X_i^* | \theta(i)=1)$ in $1 - \Phi(-\mu_1) = 0.94$ where $\Phi$ is the distribution function for the standard normal distribution. It follows that $\mu_1 = -\Phi^{-1} (0.06) = - \texttt{qnorm}(0.06) = \Sexpr{-qnorm(0.06)}$. 
+
+Similarly solving for $\mu_2 = E(X_i^* | \theta(i) = 2)$, one finds that
+\begin{align*}
+0.98 &= P(X^* < 0 | \theta(i) = 2) \\
+0.98 &= P((X^* - \mu_2) \ \sigma < -\mu_2 / \sigma | \theta(i) = 2) \\
+0.98 &= P( Z < -\mu_2 | \theta(i) = 2)
+\end{align*}
+So $\mu_2 = -\Phi^{-1}(0.98) = -\texttt{qnorm}(0.98) = \Sexpr{-qnorm(0.98)}$.
+
+\textbf{Simulation}
+
+The algorithm is to 
+\begin{enumerate}[(1)]
+\item
+Choose $\theta= 1$ and $n$, the number of simulated scores
+\item
+Generate $n$ of $X_i^*$, the distribution of which depends on $\theta$.
+\item
+Generate $l_i(s(X_i))$, the distribution of which depends on $X_i^*$ and $\theta$, using bivariate normal conditional distribution. Average these results.
+\item
+Generate $l(\theta(i), s(X_i^*))$, the distribution of which has two values given $\theta$ and the value depends on $X_i$. Average these results.
+\item
+Set $\theta = 2$ and $n=n$, go to (2)
+
+\end{enumerate}
+
+<<>>=
+library(xtable)
+
+set.seed(2014-02-05)
+
+# Generate a random l(a) | X* = x
+r_cond <- function(x, theta=1) 
+{
+    rho <- 0.7
+    sigma_l <- sqrt(10)
+    sigma_x <- 1
+    
+    # Mean of l(a1) and l(a2) given a theta value
+    mu_a1 <- 2
+    mu_a2 <- 5
+    if (theta==2)
+    {
+        mu_a1 <- 1
+        mu_a2 <- 0
+    }
+    mu_l <- ifelse(x >= 0, mu_a1, mu_a2)
+    # Mean of X* given a theta value
+    mu_x <- ifelse(theta==1, -qnorm(0.06), -qnorm(0.98))
+    
+    new_mean <- mu_l + sigma_l/sigma_x*rho*(x - mu_x)
+    new_var <- (1 - rho^2)*sigma_l^2
+    new_sd <- sqrt(new_var)
+    val <- rnorm(length(x), new_mean, new_sd)
+    return(val) 
+}
+
+r_cond_ave <- function(x, theta=1)
+{
+    mean(r_cond(x, theta))
+}
+
+mean_loss <- function(x, theta=1)
+{
+    mu_a1 <- 2
+    mu_a2 <- 5
+    if (theta==2)
+    {
+        mu_a1 <- 1
+        mu_a2 <- 0
+    }
+    return(ifelse(x >= 0, mu_a1, mu_a2))
+}
+
+mean_loss_ave <- function(x, theta=1)
+{
+    mean(mean_loss(x, theta))
+}
+
+compare_eq_1 <- function(n_sample, theta=1)
+{
+    mu_x <- ifelse(theta==1, -qnorm(0.06), -qnorm(0.98))
+    x_star <- rnorm(n_sample, mu_x, 1)
+    lhs <- r_cond_ave(x_star, theta)
+    rhs <- mean_loss_ave(x_star, theta)
+    return(c(lhs, rhs))
+}
+
+get_table <- function(n_sample)
+{
+    theta_1 <- compare_eq_1(n_sample, 1)
+    theta_2 <- compare_eq_1(n_sample, 2)
+    df <- as.data.frame(rbind(theta_1, theta_2))
+    colnames(df) <- c("$E\\{l_i(s(X_i))| \\theta(i)\\}$",
+                      "$E\\{l(\\theta(i), s(X_i))|\\theta(i)\\}$")
+    rownames(df) <- c("$\\theta(i)=1$","$\\theta(i)=2$")
+    return(df)
+}
+
+results <- get_table(1000)
+@
+
+The simulation results are summarized in the following table.
+
+<<resultstable, results='asis', echo=FALSE>>=
+print.xtable(xtable(results), sanitize.colnames.function=identity, sanitize.rownames.function=identity)
+@
+\end{proof}
+
+\subsection*{Problem 3}
+Assume that the random variable $X$ has finite $E|X|$ and is continuous (has a density). Show that $E|X - a|$ is minimun at $a=$ median$(X)$.
+\begin{proof}
+Let $f(x)$ be the density function of $X$. Calculating,
+\begin{align*}
+\frac{d}{da} E|X-a| &= \frac{d}{da} \int_{-\infty}^{\infty} |x - a| f(x) dx \\
+&= \int_{-\infty}^{\infty} \frac{d}{da}  |x - a| f(x) dx 
+\qquad \text{by \href{http://en.wikipedia.org/wiki/Leibniz_integral_rule}{Liebniz's Rule}}\\
+&= \int_{-\infty}^{a} f(x) dx + \int_{a}^{\infty} - f(x) dx \\
+&= \int_{-\infty}^{a} f(x) dx - \int_{a}^{\infty} f(x) dx \\
+&= F(a) - (1 - F(a)) \\
+&= 2 F(a) - 1
+\end{align*}
+Setting this derivative to $0$, we have equality for the value of $a$ for which $F(a) = 0.5$, or when $a =$ median$(X)$. The second derivative with respect to $a$ is $\frac{d}{da}(2F(a) - 1) = 2f(a) >0$. Thus the $a$ that we found is a minimum for the original function.
+\end{proof}
+
+\subsection*{Problem 4}
+We want to estimate the true value of the scalar $\theta$, and we have a loss function $l(\theta, a) = |\theta - a|$. Based on previous similar studies, we believe that, a priori, $P(\theta) = N (\mu_0, \tau_0^2)$, where $\mu_0$ and $\tau_0$ are known values. To help us estimate $\theta$, we design a study that gives us data $X$ where 
+$P(X | \theta) = N(\theta, \sigma_0^2)$, and  where $\sigma_0^2$ is assumed known.
+\subsubsection*{Part 1}
+Find the posterior distribution $P(\theta | X)$.
+\begin{proof}
+As a lemma, let the likelihood $\pr(X \sbs \theta) = N_k(\theta, \Sigma)$ be multivariate normal with prior $\pr(\theta) = N_k(\mu, V)$ multivariate normal. The posterior $\pr(\theta \sbs X)$ is proportional to the product of the likelihood and the prior. Hence 
+\begin{align}
+\pr(\theta \sbs X) &\propto
+\exp\left[-\frac{1}{2}(x-\theta)'\Sigma^{-1}(x-\theta) - 
+\frac{1}{2}(\theta - \mu)'V^{-1}(\theta-\mu)\right]
+\\
+&\propto
+\exp\left[
+-\frac{1}{2}(\theta'\Sigma^{-1}\theta + \theta'V^{-1}\theta -2\theta'\Sigma^{-1}x -2\theta'V^{-1}\mu)
+\right]
+\\
+&=
+\exp\left[
+-\frac{1}{2}
+(\theta'(\Sigma^{-1} + V^{-1}) \theta
+-2\theta'(\Sigma^{-1}x +V^{-1}\mu) )
+\right]
+\end{align}
+Therefore, the posterior is proportional to an unnormalized multivariate normal distribution with 
+\begin{equation}
+N_k((\Sigma^{-1} + V^{-1})^{-1}(\Sigma^{-1}x +V^{-1}\mu), (\Sigma^{-1} + V^{-1})^{-1})
+\end{equation}
+For this problem, there are multiple observations $X$ and a common mean $\theta$. Notice
+\begin{align}
+\pr(x_1, x_2, \dots, x_n \sbs \theta) &\propto_\theta
+\exp\left[
+-\frac{1}{2 \sigma_0^2}
+\sion(x_i - \theta)^2
+\right]
+\\
+&\propto_\theta
+\exp\left[
+-\frac{1}{2 \sigma_0^2}
+\sion(x_i^2 - 2x_i\theta + \theta^2)
+\right]
+\\
+&\propto_\theta
+\exp\left[
+-\frac{n}{2 \sigma_0^2}
+\sion(2\bar{x_n}\theta + \theta^2)
+\right]
+\\
+&\propto_\theta
+\exp\left[
+-\frac{n}{2 \sigma_0^2}
+\sion(\bar{x_n} - \theta)^2
+\right]
+\end{align}
+which is recognized as the normal distribution $\pr(\bar{x_n}|\theta)=N(\theta, \frac{\sigma_0^2}{n})$. Calculating more,
+\begin{align}
+\pr(\theta \sbs x_1, x_2, \dots, x_n) &\propto_\theta 
+\pr(x_1, x_2, \dots, x_n \sbs \theta) \pr(\theta)
+\\
+&\propto_\theta
+\pr(\bar{x_n}|\theta) \pr(\theta)
+\\
+&\propto_\theta
+\pr(\theta \sbs \bar{x_n})
+\end{align}
+which according to the lemma, follows the
+\begin{equation}
+N
+\left(
+\left(
+\frac{n}{\sigma_0^2} + \frac{1}{\tau_0^2}
+\right)^{-1}
+\left(
+\frac{n}{\sigma_0^2}\bar{x_n} + \frac{1}{\tau_0^2}\mu_0
+\right), 
+\left(
+\frac{n}{\sigma_0^2} + \frac{1}{\tau_0^2}
+\right)^{-1}
+\right)
+=
+N
+\left(
+\frac{\tau_0^2}{\frac{\sigma_0^2}{n}+ \tau_0^2} \bar{x_n} +
+\frac{\sigma_0^2}{\sigma_0^2+ n\tau_0^2} \mu_0,
+\left(
+\frac{n}{\sigma_0^2} + \frac{1}{\tau_0^2}
+\right)
+^{-1}
+\right)
+\end{equation}
+Source: \href{http://www.cs.berkeley.edu/~jordan/courses/260-spring10/lectures/lecture5.pdf}{Berkeley course notes}
+\end{proof}
+\subsubsection*{Part 2}
+Using Exercise 3, find the Bayes estimator for this problem, i.e. the estimate $s(X)$ that minimizes $E \{E (l ( \theta, s(X)) \sbs \theta  ) \}$, where the outer expectation is with respect to the prior distribution for $\theta$.
+\begin{proof}
+According to the class notes, slide notes (Chapter 1, pg. 20),
+\begin{equation}
+E_\theta [E_{X\sbs\theta} \{l ( \theta, s(X)) \sbs \theta  \} ]=
+E_{X} [E_{\theta\sbs X} \{l ( \theta, s(X)) \sbs X  \} ]
+\end{equation}
+The $s(X)$ is chosen that minimizes the posterior loss
+\begin{equation}
+E_{\theta\sbs X} \{l ( \theta, s(x)) \sbs X =x \}
+=
+\int_\theta 
+l(\theta, s(x)) \pr(\theta \sbs X=x)d\theta
+\end{equation}
+To do that, first the ``no-data problem'' is solved. Assume a working prior $\pi(\theta)$. The $s^*$ that minimizes 
+\begin{equation}
+\int_\theta 
+l(\theta, s^*) \pi(\theta)d\theta = E_\pi [|\theta - s^*|]
+\end{equation}
+is $s^*_{(\pi)} = \text{median}(\theta)$ by problem 3. Therefore, by slide notes (Chapter 1, pg. 21), the Bayes estimator is
+\[
+s^*(X) = s^*_{\pr(\theta \sbs X)} = \text{median}(\theta) = \frac{\tau_0^2}{\frac{\sigma_0^2}{n}+ \tau_0^2} \bar{x_n} +
+\frac{\sigma_0^2}{\sigma_0^2+ n\tau_0^2} \mu_0
+\]
+\end{proof}
+
+\subsection*{Problem 5}
+Refer to Problem 4, and suppose we have iid observations from the likelihood. By considering a sequence of priors, each as in problem 4, but with mean $0$ and $\tau_0$ increasing with the sequence, show that the sample average is a minimax estimator. (Hint: note that the sample average is equalizer).
+
+\begin{proof}
+Let $\{\tau_j\} \uparrow \infty$ be a sequence increasing to infinity. Let $\theta_j$ be distributed as $N(0, \tau_j^2)$. Then the posterior distribution $\pr(\theta_j | x_1, x_2, \dots, x_n)$ is 
+\[
+N\left(
+\frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2} \bar{x_n}, 
+\left(
+\frac{n}{\sigma_0^2} + \frac{1}{\tau_j^2}
+\right)^{-1}
+\right)
+\]
+It is easy to see the limit of the posterior is 
+\[
+\lim_{j\to \infty} \pr(\theta_j\sbs x_1, x_2, \dots, x_n) 
+= 
+N
+\left(
+\bar{x_n}, \frac{\sigma_0^2}{n}
+\right)
+\]
+
+%%%%%%%%%%%%%%%%
+
+We will use the following result to prove the sample average is minimax.
+
+\textbf{Result 1:} If $s_j$ is a Bayes rule with respect to $\pi_j$, with $L(\theta, s_j)\to c\in \R$ and if there exists a strategy $s_0$ such that $L(\theta, s_0) \leq c$ for every $\theta \in \Theta$, then $s_0$ is minimax with ``value''
+\[
+\inf_s \sup_\theta L(\theta, s) = c = \sup_\theta L(\theta, s_0)
+\] 
+
+Suppose $s|\theta \sim N(\mu, \sigma^2)$. Calculating,
+\begin{align}
+E_{s|\theta}[l(\theta, s)] 
+&=
+\int_{-\infty}^\infty |\theta - s| f_{s|\theta}(s) ds
+\\
+&= 
+\int_{-\infty}^\theta (\theta - s) f_{s|\theta}(s) ds +
+\int_\theta^\infty (s - \theta) f_{s|\theta}(s) ds
+\\
+&=
+\int_{-\infty}^\theta (\theta -\mu + \mu - s) f_{s|\theta}(s) ds +
+\int_\theta^\infty (s - \mu +\mu- \theta) f_{s|\theta}(s) ds
+\\
+&=
+(\theta - \mu)F_{s|\theta}(\theta) + (\mu - \theta)(1-F_{s|\theta}(\theta) ) + 
+\int_{-\infty}^\theta (\mu - s) f_{s|\theta}(s) ds +
+\int_\theta^\infty (s - \mu) f_{s|\theta}(s) ds
+\\
+&=
+(\theta - \mu)(2 F_{s|\theta}(\theta) - 1)
++
+\int^{\infty}_{-\theta} (s - \mu) f_{s|\theta}(s) ds +
+\int_\theta^\infty (s - \mu) f_{s|\theta}(s) ds
+\end{align}
+And doing a $u$ substitution with $u = \frac{s - \mu}{\sigma}$
+\begin{align}
+\int^{\infty}_{-\theta} (s - \mu) f_{s|\theta}(s) ds +
+\int_\theta^\infty (s - \mu) f_{s|\theta}(s) ds
+&=
+\frac{\sigma}{\sqrt{2\pi}}
+\left(
+\int_{-\frac{\theta - \mu}{\sigma}}^\infty
+u \exp\{-0.5u^2\}
++
+\int_{\frac{\theta - \mu}{\sigma}}^\infty
+u \exp\{-0.5u^2\}
+\right)
+\\
+&=
+\frac{\sigma}{\sqrt{2\pi}}
+\left(
+2 \exp\left\{
+-\frac{1}{2\sigma^2} (\theta-\mu)^2
+\right\}
+\right)
+\end{align}
+Hence
+\begin{equation}
+E_{s|\theta}[l(\theta, s)] = (\theta - \mu)(2 F_{s|\theta}(\theta) - 1) + \frac{2\sigma}{\sqrt{2\pi}}
+ \exp\left\{
+-\frac{1}{2\sigma^2} (\theta-\mu)^2
+\right\}
+\end{equation}
+Note that $E_{s|\theta}[l(\theta, s)] >0 $ when $|\theta - \mu| > 0$. 
+
+Since
+\[
+s_{\pi_j}(X) = \frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2} \bar{x_n}
+\]
+we have that 
+\[
+s_{\pi_j}(X) | \theta 
+\sim 
+N
+\left(
+\frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2} \theta
+,
+\frac{\sigma_0^2}{n} \left(\frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2}\right)^2
+\right)
+\]
+Using the result above,
+\begin{equation}
+L(\theta, s_{\pi_j}) = 
+(
+\theta - \frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2} \theta
+)
+(2 F_{s_{\pi_j}|\theta}(\theta) - 1) 
++
+\frac{2\sigma_0}{\sqrt{2\pi n}}
+\left(\frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2}\right)
+\exp
+\left\{
+-\frac{n}{2\sigma_0^2}
+\left(\frac{\frac{\sigma_0^2}{n} + \tau_j^2}{\tau_j^2}\right)
+\left(\theta
+-
+\frac{\tau_j^2}{\frac{\sigma_0^2}{n} + \tau_j^2} \theta
+\right)^2
+\right\}
+\end{equation}
+Taking the limit,
+\[
+\lim_{j \to \infty} L(\theta, s_{\pi_j}) = \frac{2\sigma_0}{\sqrt{2\pi n}}
+\]
+Now $L(\theta, \bar{x_n}) = E_{\bar{x_n}|\theta}[l(\theta, \bar{x_n})]$ and since 
+\[
+\bar{x_n} | \theta \sim 
+N
+\left(
+\theta, \frac{\sigma_0^2}{n}
+\right)
+\]
+it follows
+\[
+L(\theta, \bar{x_n}) = 
+\frac{2\sigma_0}{\sqrt{2\pi n}}
+\]
+That is $\bar{x_n}$ is equalizer.
+Therefore, we have the conclusion of the \textbf{Result 1} above, i.e. that the sample average is equalizer.
+\end{proof}
+
+
+
+\end{document}

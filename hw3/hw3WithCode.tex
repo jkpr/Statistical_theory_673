@@ -1,0 +1,732 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}\usepackage{graphicx, color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\definecolor{fgcolor}{rgb}{0.2, 0.2, 0.2}
+\newcommand{\hlnumber}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlfunctioncall}[1]{\textcolor[rgb]{0.501960784313725,0,0.329411764705882}{\textbf{#1}}}%
+\newcommand{\hlstring}[1]{\textcolor[rgb]{0.6,0.6,1}{#1}}%
+\newcommand{\hlkeyword}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlargument}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlcomment}[1]{\textcolor[rgb]{0.180392156862745,0.6,0.341176470588235}{#1}}%
+\newcommand{\hlroxygencomment}[1]{\textcolor[rgb]{0.43921568627451,0.47843137254902,0.701960784313725}{#1}}%
+\newcommand{\hlformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hleqformalargs}[1]{\textcolor[rgb]{0.690196078431373,0.250980392156863,0.0196078431372549}{#1}}%
+\newcommand{\hlassignement}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}%
+\newcommand{\hlpackage}[1]{\textcolor[rgb]{0.588235294117647,0.709803921568627,0.145098039215686}{#1}}%
+\newcommand{\hlslot}[1]{\textit{#1}}%
+\newcommand{\hlsymbol}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlprompt}[1]{\textcolor[rgb]{0.2,0.2,0.2}{#1}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\sion}{\sum_{i=1}^n}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.673 Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Assignment 3}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item 
+You have been sent by email the data $Y_{i}$
+of $500$ persons, which are the lengths of stay
+described in problem 2, part (ii) of the previous problem set.
+\begin{enumerate}[(i)]
+\item
+By equating the expressions for $E(Y_{i}|I_{i}=1,\theta )$
+and $\var(Y_{i}|I_{i}=1,\theta )$ (in terms of $\theta _{
+\mathbf{1}}$
+and $\theta _{\mathbf{2}}$) to the sample
+mean and variance of your data 
+$Y_\mathbf{i}$, find estimates of 
+$\theta _{\mathbf{1}}$ and 
+$\theta _{\mathbf{2}}$. This is
+called a ``moment estimation'' method.
+
+\begin{proof}
+We use the method of moments as described on Casella and Berger, pg 312. 
+\begin{align*}
+m_1 = \frac{1}{n} \sum_{i=1}^n X_i, &\quad \mu_1' = EX = \theta_1 
+\quad \text{according to problem set 2} \\
+m_2 = \frac{1}{n} \sum_{i=1}^n X_i^2, &\quad \mu_2' = EX^2 = \theta_2 + \theta_1^2 \quad \text{by problem set 2}
+\end{align*}
+Now we set the moments equal to each other from the sample and the population, then solve the system of equations.
+Hence 
+\begin{align}
+\tilde{\theta_1} &= \mu_1 = m_1 = \frac{1}{n} \sum_{i=1}^n X_i = \bar{X} 
+\quad \text{and} \\
+\tilde{\theta_2} + \tilde{\theta_1}^2 &= \mu_2 = m_2 = \frac{1}{n} \sum_{i=1}^n X_i^2 \\
+\tilde{\theta_2} &= \frac{1}{n} \sum_{i=1}^n X_i^2 - \bar{X}^2
+= \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2
+\end{align}
+These are the estimates we desire.
+\end{proof}
+\item
+Consider the likelihood function of your data as in
+part (ii) of the previous problem set. For the MLEs of that likelihood,
+there is no known closed form, but the MLEs can be found numerically by
+maximization algorithms. By using the algorithm ``optim'' (see \texttt{help(optim)}) in the statistical environment
+\texttt{R}, or any other appropriate algorithm
+and/or programming of your choice, find a stationary point for the mean 
+$\theta_{1}$ and variance $\theta_{2}$ of the length of stay in the target
+population.
+
+\begin{proof}
+The likelihood function from part (ii) of the last homework is 
+\begin{align}
+\pr(Y_i \sbs I_i = 1, \theta) = \prod_{i=1}^{500} \frac{f(y_i, \theta) y_i}{E_\theta[Y_i]}
+\end{align}
+Since maximizing the likelihood gives the same results as maximizing the log of the likelihood, we maximize
+\begin{equation}
+\log(\pr(Y_i \sbs I_i = 1, \theta)) = \sum_{i=1}^{500} \log(f(Y_i, \theta)) + \log( Y_i) - \log(E_\theta[Y_i])
+\end{equation}
+varying the parameters $\theta_1$ and $\theta_2$ using \texttt{optim}. Note that $f(Y_i, \theta)$ is the density of a gamma distribution with mean $\theta_1$ and variance $\theta_2$.
+
+% Insert code
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+dat <- \hlfunctioncall{c}(114, 540, 203, 91, 117, 204, 163, 390, 256, 6, 89, 147, 18, 187, 55, 
+    249, 197, 329, 66, 645, 331, 316, 102, 489, 111, 503, 478, 143, 204, 66, 
+    47, 109, 178, 152, 398, 20, 204, 449, 136, 275, 226, 220, 37, 116, 62, 40, 
+    198, 520, 151, 400, 294, 62, 223, 343, 226, 129, 228, 507, 79, 229, 108, 
+    38, 441, 257, 132, 371, 76, 214, 211, 97, 131, 253, 14, 99, 154, 276, 294, 
+    275, 246, 38, 87, 19, 302, 269, 154, 22, 129, 134, 371, 4, 343, 416, 190, 
+    497, 592, 206, 129, 139, 184, 470, 420, 353, 87, 239, 224, 184, 49, 68, 
+    625, 184, 43, 157, 27, 307, 12, 446, 59, 88, 319, 875, 214, 63, 44, 216, 
+    165, 264, 159, 670, 178, 669, 219, 38, 237, 266, 224, 153, 122, 116, 250, 
+    189, 173, 244, 228, 480, 538, 245, 238, 299, 203, 246, 359, 61, 254, 307, 
+    55, 353, 170, 280, 199, 207, 360, 538, 204, 238, 260, 146, 43, 130, 225, 
+    347, 111, 417, 1175, 74, 404, 792, 499, 63, 122, 262, 289, 487, 18, 68, 
+    209, 423, 123, 541, 152, 291, 50, 164, 299, 67, 301, 193, 323, 93, 71, 61, 
+    152, 39, 357, 17, 296, 299, 55, 504, 11, 71, 37, 409, 85, 229, 192, 181, 
+    309, 24, 236, 216, 59, 137, 127, 168, 103, 83, 79, 70, 94, 207, 129, 95, 
+    146, 206, 47, 239, 86, 506, 112, 125, 133, 40, 334, 167, 239, 404, 408, 
+    81, 28, 589, 172, 443, 1036, 341, 209, 319, 152, 67, 288, 182, 101, 191, 
+    571, 132, 217, 248, 76, 57, 189, 220, 113, 159, 83, 23, 15, 93, 193, 33, 
+    351, 340, 739, 121, 74, 643, 288, 159, 238, 148, 92, 53, 209, 299, 123, 
+    25, 39, 42, 84, 69, 259, 499, 255, 105, 375, 22, 84, 364, 513, 118, 370, 
+    147, 249, 411, 328, 53, 568, 116, 45, 59, 53, 393, 144, 291, 111, 271, 364, 
+    633, 72, 500, 234, 224, 271, 90, 25, 331, 138, 169, 505, 111, 231, 281, 
+    299, 238, 414, 128, 381, 56, 147, 534, 214, 34, 414, 292, 182, 78, 90, 73, 
+    317, 102, 214, 569, 134, 158, 847, 209, 167, 58, 364, 427, 380, 116, 546, 
+    155, 105, 278, 288, 491, 281, 122, 502, 421, 122, 48, 141, 29, 95, 281, 
+    83, 320, 100, 10, 124, 301, 263, 192, 510, 255, 343, 242, 274, 176, 74, 
+    58, 82, 191, 259, 253, 469, 281, 30, 162, 33, 200, 405, 238, 454, 68, 333, 
+    280, 119, 161, 104, 209, 11, 342, 473, 114, 234, 104, 130, 9, 470, 533, 
+    43, 210, 77, 335, 67, 88, 146, 686, 125, 148, 165, 169, 354, 36, 633, 16, 
+    189, 133, 300, 19, 185, 835, 160, 249, 245, 225, 22, 297, 27, 292, 264, 
+    65, 506, 39, 324, 117, 55, 212, 318, 205, 377, 104, 249, 232, 600, 77, 158, 
+    92, 519, 179, 168, 468, 92, 102, 551, 72, 81, 116, 162, 101, 699, 107, 295, 
+    12, 11, 566, 166, 61)
+
+\hlcomment{# estimate of theta1}
+meanDat <- \hlfunctioncall{mean}(dat)
+theta1 <- meanDat
+\hlcomment{# estimate of theta2}
+varDat <- \hlfunctioncall{mean}((dat - meanDat)^2)
+theta2 <- varDat
+
+\hlcomment{# Problem 2 We take the log likelihood, we need expressions for f(Y_i,}
+\hlcomment{# \textbackslash{}theta) = pr(Y_i | \textbackslash{}theta) = Y_i E_\textbackslash{}theta[Y_i] and their logs}
+
+logLikelihood <- \hlfunctioncall{function}(params, dat = dat) \{
+\hlcomment{    # Mean}
+    theta1 <- params[1]
+\hlcomment{    # Variance}
+    theta2 <- params[2]
+    
+\hlcomment{    # Shape}
+    alpha <- theta1^2/theta2
+\hlcomment{    # Rate}
+    beta <- theta1/theta2
+    
+\hlcomment{    # log( pr(Y_i | \textbackslash{}theta) )}
+    logPr <- \hlfunctioncall{dgamma}(x = dat, shape = alpha, rate = beta, log = TRUE)
+    
+    logY <- \hlfunctioncall{log}(dat)
+    logEY <- \hlfunctioncall{log}(theta1)
+    
+    summand <- logPr + logY - logEY
+    rtrn <- \hlfunctioncall{sum}(summand)
+    \hlfunctioncall{return}(rtrn)
+\}
+
+\hlcomment{# optimize the log likelihood function}
+optimOut <- \hlfunctioncall{suppressWarnings}(\hlfunctioncall{optim}(par = \hlfunctioncall{c}(theta1, theta2), logLikelihood, dat = dat, 
+    control = \hlfunctioncall{list}(fnscale = -1), hessian = TRUE))
+\hlcomment{# Optimized theta1 and theta2}
+mleTheta1 <- optimOut$par[1]
+mleTheta2 <- optimOut$par[2]
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+
+The optimal values are $\hat{\theta_1}=85.8717$ and $\hat{\theta_2}=\ensuremath{1.1933\times 10^{4}}$.
+\end{proof}
+
+\item
+You may get some warning messages while using the
+algorithm, which indicate possible numerical instability of the algorithm.
+To make sure the converged values of the algorithm are a maximum, check that
+the second derivative matrix of the log-likelihood, also called the Hessian
+matrix, is negative-definite (as defined in class) when evaluated at the
+converged values of the algorithm. 
+
+Note: you can obtain the Hessian matrix
+by setting the option \texttt{hessian=T} in the
+algorithm \texttt{optim}. You can use the result
+that the Hessian matrix is negative definite if and only if it satisfies the
+conditions a.-c. of example 7.2.12 of the text (p. 322).
+
+\begin{proof}
+The code checks that the Hessian matrix is negative-definite. The theorem is that a symmetric matrix is negative-definite if and only if its eigenvalues are all negative. The code checks that (1) the Hessian is symmetric (which it is by definition since Clairaut's theorem holds) and (2) that the eigenvalues are negative.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{# http://www.math.northwestern.edu/~clark/285/2006-07/handouts/pos-def.pdf}
+\hlcomment{# A symmetric matrix A is negative-definite if and only if all its}
+\hlcomment{# eigenvalues are negative 1. test if hessian is symmetric}
+hess <- optimOut$hessian
+testSym <- \hlfunctioncall{isSymmetric}(hess)
+testSym
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\begin{alltt}
+\hlcomment{# 2. test if eigenvalues are negative}
+vals <- \hlfunctioncall{eigen}(hess)$values
+\hlcomment{# Test: the number of nonnegative eigenvalues is 0}
+negEig <- \hlfunctioncall{sum}(vals >= 0) == 0
+negEig
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+This shows that the values we found are a true minimum.
+\end{proof}
+
+\item
+Find the MLE of the 95th percentile of the
+distribution of lengths of stay in the target population. (Hint: you can use
+the invariance property of MLEs, and a numerical method to do the actual
+computation. For example, check the function
+\texttt{qgamma()} in \texttt{R}).
+\begin{proof}
+We assume that $Y_i$ is distributed as a gamma distribution with mean $\theta_1$ and variance $\theta_2$. Let that distribution have distribution function $F_{\theta_1, \theta_2}(x)$. Thus we find the maximum likelihood estimation for $x$ such that $F_{\theta_1, \theta_2}(x) = 0.95$. By the invariance property of MLEs, we have that the MLE $\hat{x}$ of $x$ is the 95th percentile of the distribution using the MLEs for $\theta_1$ and $\theta_2$. Hence, we seek the value of $x$ such that $F_{\hat{\theta_1}, \hat{\theta_2}}(x) =0.95$.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcomment{# 95th percentile of the stays}
+alpha <- mleTheta1^2/mleTheta2
+beta <- mleTheta1/mleTheta2
+percentile95 <- \hlfunctioncall{qgamma}(0.95, shape = alpha, rate = beta)
+percentile95
+\end{alltt}
+\begin{verbatim}
+## [1] 305.7
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+
+By the calculations, $\hat{x} = 305.7337$.
+\item
+Each of your colleagues has been given a different independent set of 500 people from the survey. Using each other's ML estimates, report         an estimate of the variance of the MLEs $\hat{\theta_1}$ and $\hat{\theta_2}$, and an estimate of the covariance between $\hat{\theta_1}$ and $\hat{\theta_2}$.
+
+Calculating,
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+mle <- \hlfunctioncall{data.frame}(t1 = \hlfunctioncall{c}(78.194162440696, 99.53211, 75.01152, 86.2899, 70.241, 
+    91.30126, 94.39133, 85.82074, 101.78, 97.74616, 85.87174, 69.85466, 109.7952), 
+    t2 = \hlfunctioncall{c}(10391.1023073862, 12846.45771, 11604.23978, 11805.2739, 12415.58, 
+        11975.6, 12313.07484, 12402.29, 13085.66, 12940.12797, 11933.16, 11014.56209, 
+        13357.18), who = \hlfunctioncall{c}(\hlstring{"David"}, \hlstring{"Qing"}, \hlstring{"Yuting"}, \hlstring{"Dan"}, \hlstring{"Tianchen"}, \hlstring{"Carrie"}, 
+        \hlstring{"Jean-Philippe"}, \hlstring{"Emily"}, \hlstring{"Vivek"}, \hlstring{"Leo"}, \hlstring{"James"}, \hlstring{"Jiawei"}, \hlstring{"John"}))
+t1t1 <- \hlfunctioncall{cov}(mle$t1, mle$t1)
+t1t2 <- \hlfunctioncall{cov}(mle$t1, mle$t2)
+t2t2 <- \hlfunctioncall{cov}(mle$t2, mle$t2)
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+
+So the variance-covariance matrix (using subscripts for row and column number) is 
+\begin{equation}
+\begin{bmatrix}
+155.5067 & 8008.9851 \\
+8008.9851 & \ensuremath{7.0655\times 10^{5}}
+\end{bmatrix}
+\end{equation}
+\end{proof}
+\end{enumerate}
+
+\item
+Problem 2. We wish to study the level of a specific radioactive particle in
+an environment, using a counter. The number $X$ of particles counted by the
+counter in a time interval of 1 min. is assumed to follow a Poisson
+distribution. You have been sent 50 measurements, $X_{1},...,X_{50}$, of
+counts at different 1 min; assume the 50 measurements are i.i.d. from
+Poisson$(\mu )$.
+
+\begin{enumerate}[(i)]
+\item
+Find the MLE of $\mu$. Show that the MLE is a minimal sufficient statistic for $\mu$.
+
+\begin{proof}
+The joint density of the fifty random variables is 
+\begin{align}
+f(x_1, \cdots, x_{50} \sbs \mu) 
+&= 
+\prod_{i=1}^{50} 
+f(x_i) 
+\quad \text{by independence} \\
+&= 
+\prod_{i=1}^{50}
+\frac{\mu^{x_i}}{x_i!} e^{-\mu}
+\quad \text{since all are poisson} \\
+&= 
+\mu^{\sum_{i=1}^{50} x_i} e ^{-50\mu} 
+\prod_{i=1}^{50}
+\frac{1}{x_i!}
+\end{align}
+Now we take the derivative of the log of the joint density and set it equal to zero.
+\begin{align}
+0 &= \frac{d}{d \mu}(\log (  f(x_1, \cdots, x_{50} \sbs \mu)   )) \\
+0 &= 
+\frac{d}{d \mu} 
+\left(\sum_{i=1}^{50} x_i \log(\mu) - 50 \mu + \sum_{i=1}^{50} \log\left(\frac{1}{x_i!} \right)    \right) \\
+0 &=
+\sum_{i=1}^{50} x_i \mu^{-1} - 50 \\
+\mu &= \frac{1}{50}\sum_{i=1}^{50} x_i \\
+\mu &= \bar{X}
+\end{align}
+Since the second derivative, $-\sum_{i=1}^{50} x_i \mu^{-2}$, is everywhere negative, we have that $\mu = \bar{X}$ is a maximum. Hence it is the MLE.
+
+To show that it is a minimal sufficient statistic for $\mu$, we use theorem 6.2.13 in Casella and Berger, pg. 281. Suppose $Y_1, \cdots, Y_{50}$ had the same MLE as $X_1, \cdots, X_{50}$ with $\bar{Y} = \bar{X}$. Then
+\begin{align}
+\frac{f( \mathbf{x}|\theta)}{f(\mathbf{y} | \theta)} 
+&=
+\prod_{i=1}^{50}
+\frac{\mu^{x_i}}{x_i!} e^{-\mu}
+/
+\prod_{i=1}^{50}
+\frac{\mu^{y_i}}{y_i!} e^{-\mu} \\
+&=
+\left(\mu^{\sum_{i=1}^{50}x_i}
+\prod_{i=1}^{50}
+\frac{1}{x_i!} e^{-\mu} \right)
+/
+\left(\mu^{\sum_{i=1}^{50}y_i}
+\prod_{i=1}^{50}
+\frac{1}{y_i!} e^{-\mu} \right)\\
+&=
+\prod_{i=1}^{50}
+\frac{1}{x_i!} 
+/
+\prod_{i=1}^{50}
+\frac{1}{y_i!}
+\end{align}
+since $\sum_{i=1}^{50}x_i = \sum_{i=1}^{50}y_i$. Thus (15) is constant as a function of $\mu$. Now suppose 
+\begin{align}
+\frac{f( \mathbf{x}|\theta)}{f(\mathbf{y} | \theta)} 
+&=
+\left(\mu^{\sum_{i=1}^{50}x_i}
+\prod_{i=1}^{50}
+\frac{1}{x_i!} e^{-\mu} \right)
+/
+\left(\mu^{\sum_{i=1}^{50}y_i}
+\prod_{i=1}^{50}
+\frac{1}{y_i!} e^{-\mu} \right) 
+\end{align}
+is constant as a function of $\mu$. Thus 
+\begin{equation}
+\mu^{\sum_{i=1}^{50}x_i} = \mu^{\sum_{i=1}^{50}y_i}
+\end{equation}
+for all $x_i$ and $y_i$. Therefore (19) is equal to a constant, and thus 
+\begin{equation}
+\sum_{i=1}^{50}x_i = \sum_{i=1}^{50}y_i
+\end{equation}
+and $\bar{X} = \bar{Y}$. Now by the theorem we conclude that $\bar{X}$ is a minimal sufficient statistic.
+\end{proof}
+\item
+Suppose we are interested in $g(\mu) = \pr(X=0 \sbs \mu)$. Find the MLE of $g(\mu)$. Do you think this MLE is biased or unbiased for $g(\mu)$ and why?
+\begin{proof}
+Note that $g(\mu) = \pr(X=0 \sbs \mu) = e^{-\mu}$. Thus by the invariance property of MLEs, $e^{-\bar{X}}$ is an MLE of $e^{-\mu}$. Applying Jensen's inequality, 
+\begin{equation}
+E (e ^{- \bar{X}}) \geq e^{E(-\bar{X})} = e^{-\mu}
+\quad \text{since $\bar{X}$ is unbiased}
+\end{equation}
+Since we are dealing with a strictly convex function, we do not have equality, and thus the MLE for $g(\mu)$ is biased.
+\end{proof}
+\item
+By considering $X_i^* = 1 (X_i = 0), i = 1, \cdots, 50,$ where $1()$ is the indicator function, find an unbiased estimator and estimate of $g(\mu)$.
+\begin{proof}
+Intuition would say that the proportion of the sample equal to zero, $\frac{1}{50} \sum_{i=1}^{50} X_i^*$, would be a good guess for an unbiased estimator of $g(\mu)$. Calculating,
+\begin{align}
+E\left[  \frac{1}{50} \sum_{i=1}^{50} X_i^* \right] 
+&= \frac{1}{50} \sum_{i=1}^{50} E[X_i^*] \\
+&= \frac{1}{50} \sum_{i=1}^{50} \cP (X_i = 0 \sbs \mu)
+\quad \text{since $X_i^*$ is an indicator}  \\
+&= g(\mu)
+\end{align}
+we see that our guess is indeed unbiased.
+Calculating from the data provided, 
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+dat2 <- \hlfunctioncall{c}(3, 4, 4, 3, 6, 0, 2, 4, 4, 3, 3, 5, 2, 2, 4, 3, 5, 4, 1, 2, 3, 3, 
+    6, 0, 5, 6, 5, 2, 4, 4, 0, 4, 4, 1, 2, 8, 4, 7, 3, 5, 3, 3, 2, 4, 5, 7, 
+    3, 2, 4, 5)
+unB <- \hlfunctioncall{mean}(dat2 == 0)
+unB
+\end{alltt}
+\begin{verbatim}
+## [1] 0.06
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+We get that an unbiased estimate of $g(\mu)$ is 0.06
+\end{proof}
+
+\item
+Find the distribution of $\pr(X_1 \sbs \bar{X}, \mu)$. (Here, $X_1$ indicates the first measurement as given to you in random order, and is not necessarily the smallest measurement).
+
+\begin{proof}
+Note that since we are dealing with 50 observations, 
+\begin{equation}
+\pr(X_1 \sbs \bar{X} = \bar{x}, \mu) = \pr (X_1 \sbs \sum_{i=1}^{50} X_i = \sum_{i=1}^{50} x_i, \mu)
+\end{equation}
+Define a new random variables
+\begin{equation}
+S = \sum_{i=1}^{50} X_i \text
+{,\quad and\quad } 
+S_{-1} = \sum_{i=2}^{50} X_i
+\end{equation}
+Since the $X_i$ are independent, we have $X_1$ and $S_{-1}$ are also independent. Notice that $S_{-1}$ is the sum of 49 Poisson$(\mu)$ which is a poisson distribution with parameter $49 \mu$. These two facts give
+\begin{equation}
+\pr(X_1 = x_1, S_{-1} = s_{-1} \sbs \mu) = 
+\frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s_{-1}}}{s_{-1}!} e^{-49\mu}
+\end{equation}
+Now we wish to calculate the joint density of $X_1$ and $S$ by the change of variable method (for reference, see pg. 108 of Grimmett and Stirzaker). Let 
+\begin{equation}
+U = S = S_{-1} + X_1 
+\text{, \quad and \quad } 
+V = X_1
+\end{equation}
+If follows that $S_{-1} = U - V$. Thus the Jacobian, $J$, is 1 everywhere. Now the joint density of $X_1$ and $S$ is as follows
+\begin{align}
+f_{X_1, S} (X_1 = x_1, S = s) 
+&= f_{X_1, S_{-1}} (x_1, s - x_1) | J (x_1, s)| \\
+&= f_{X_1, S_{-1}} (x_1, s - x_1) \\
+&= \frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s - x_1}}{(s-x_1)!} e^{-49\mu}
+\end{align}
+Hence, by conditional probability,
+\begin{align}
+\pr(X_1 \sbs \bar{X}, \mu) &= \pr (X_1 \sbs S, \mu) \\ 
+&= \pr(X_1, S \sbs \mu) / \pr(S \sbs \mu) \\
+&= 
+\left(\frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s - x_1}}{(s-x_1)!} e^{-49\mu} \right)
+/
+\left( \frac{(50\mu)^{s}}{s!} e^{-50\mu} \right) \\
+&= 
+\frac{\mu^{x_1} e^{-50\mu}}{x_1!} \frac{(49\mu)^{s - x_1}}{(s-x_1)!}  
+\frac{s!}{e^{50\mu}(-50\mu)^{s}}  \\
+&=
+\binom{s}{x_1} 
+\left(\frac{49}{50}\right)^s 
+\left( \frac{1}{49} \right)^{-x_1}
+\end{align}
+as desired.
+\end{proof}
+
+\item
+Use your estimator in (iii), your result in (iv) and ``Blackwellization'' to obtain an unbiased estimator (and estimate) for $g(\mu)$ that has smaller variance than the one in (iii). Is this the minimum unbiased estimator for $g(\mu)$, and why or why not? 
+
+\begin{proof}
+We have an estimate for $g(\mu)$. It is $(1/50)\sum_{i=1}^{50} X_i^*$. Since the distribution of the data given the statistic $\bar{X}$ does not depend on $\mu$, as we found in (iv) we Blackwellize by finding
+\begin{align}
+E\left[(1/50)\sum_{i=1}^{50} X_i^* \sbs \bar{X} \right] 
+&= (1/50) \sum_{i=1}^{50} E[X_i^* | \bar{X}] \\
+&= (1/50) \sum_{i=1}^{50} \pr(X_i = 0 | \bar{X}, \mu) \\
+&= (1/50) \sum_{i=1}^{50} \pr(X_i = 0 | S, \mu) \\
+&= (1/50) \sum_{i=1}^{50} 
+\binom{s}{0} 
+\left(\frac{49}{50}\right)^s 
+\left( \frac{1}{49} \right)^{0}\\
+&= \left(\frac{49}{50}\right)^s
+\end{align}
+It is not quite clear if this is the minimum unbiased estimator for $g(\mu)$.
+Calculating, 
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+s <- \hlfunctioncall{sum}(dat2)
+blac <- (49/50)^s
+blac
+\end{alltt}
+\begin{verbatim}
+## [1] 0.02743
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+
+we see that our Blackwellized estimator is 0.0274.
+
+\end{proof}
+\end{enumerate}
+
+\end{enumerate}
+
+\section*{Acknowledgments}
+I would like to thank David for his explanations of the homework problems.
+
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[letterpaper,12pt]{article}
+
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+\renewcommand{\P}{\mathcal{P}}
+
+\begin{document}
+
+\textsf{
+\begin{flushleft}
+\sc James K. Pringle \\
+\normalfont 140.673 \\
+Dr. Constantine Frangakis \\
+Assignment 1 \\
+7 February 2013, Thursday
+\end{flushleft}
+} \bigskip
+
+\begin{center}
+\bf Problems 1, 2, 3, 4, 5
+\end{center}
+
+\begin{enumerate}[(1)]
+\item
+Among the population, $P$, of women who visit phyisicians for screening for a disease, assume that the screening test has specificity and sensitivity as the one discussed in lecture one, where, here, probability statements mean fractions of women in the population $P$ (for example, specificity of $98\%$ means that, of all true negative women in $P$, $98\%$ would test negative.).
+For a woman $i$, denote $\theta(i) = 1$ if the woman is truly positive, and $2$ if truly negative; and denote $(l_i(a_1), l_i(a_2))$ to be the loss to that woman if treated, or if not treated, respectively (in the last expressions, her true status is captured already in the notation ``i'').
+Suppose that the averages of the losses in the diseased and non-diseased women, if treated and if not treated, are:
+\begin{align*}
+l(1,a_1) &:= E\{l_i(a_1)| \theta(i) = 1\} = 2 \\
+l(1, a_2) &:= E\{l_i(a_2)|\theta(i)=1\} = 5 \\
+l(2, a_1) &:= E\{l_i(a_1)|\theta(i)=2\} = 1 \\
+l(2, a_2) &:= E\{l_i(a_2)|\theta(i)=2\} = 0
+\end{align*}
+but that $l_i$ may generally vary from woman to woman, and that among women of a particular status (diseased, or not diseased), the losses $l_i$ may be correlated with the value $X_i$ that the diagnostic test would show for woman $i$.
+For the strategy $s$ defined as $s(X_i) = a_1$ if $X_i$ is positive, and $s(X_i)=a_2$ if $X_i$ is negative, which of the following conditions 1.-3. would make the losses
+\begin{equation} 
+\label{eq1}
+E\{l_i(s(X_i)) | \theta(i)\} \text{ and } E\{l(\theta(i),s(X_i))| \theta(i)\}
+\end{equation}
+equal and why?
+\begin{enumerate}[1.]
+\item
+For a fixed action $a$, $l_i(a)$ is constant within women of common disease status $\theta(i)$.
+\item
+For a fixed action $a$, $X_i$ is independent 	of $l_i(a)$.
+\item
+For a fixed action $a$, $X_i$ is independent of $l_i(a)$ given $\theta(i)$.
+\end{enumerate}
+
+\begin{proof}
+Let's examine 1. For an action $a$, the loss $l_i(a)$ is constant within women of common disease status $\theta(i)$. Since, for example,  $E\{l_i(a_1)| \theta(i) = 1\} = 2$, it must be that $l_i(a_1)$ given $\theta(i) =1$ is $2$ for all $i$. Otherwise, if $l_i(a_1)$ were some other value, $c \neq 2$, then the expected value would be $c$. In other words, we have $l_i (s(X_i)) = l(\theta(i), s(X_i))$, since $s(X_i)$ is the same on both sides of the equal sign and $\theta(i)$ is captured in $l_i$. Since we have that equality, taking expectations over subsets of people with true status $\theta(i)$ will yield equal values.
+
+Now 2. And 3.
+\end{proof}
+
+\item
+Now assume that the way the test $X_i$ is determined is by measuring a continuous variable $X_i^*$, and calling $X_i$ positive if $X^* > 0$, otherwise calling $X_i$ negative. Assuming that pr$(X_i^* | \theta(i))$ is normal with variance $1$, find $E(X_i^*|\theta(i))$ for the two disease conditions. 
+Also, assume that, for a fixed action $a$, pr$(l_i(a) | \theta(i))$ is normal with the means given above, variance $10$, and that $cor(l_i(a),X_i^*|\theta(i))=0.7$.
+ Using simulation of $1000$ 	diseased and $1000$ non-diseased women, or otherwise, estimate the two average losses in \eqref{eq1}.
+
+\begin{proof}
+From the lecture notes, the specificiy of the test is $0.98$ and the sensitivity is $0.94$. Thus $P( X_i^* > 0 | \theta(i) = 1) = 0.94$. Since we assume a normal distribution, with variance $\sigma^2 = 1$, we have
+\begin{align*}
+0.94 &= P( X^* > 0 | \theta(i) = 1) \\
+0.94 &= P( (X^* - \mu_1) / \sigma > -\mu_1/ \sigma | \theta(i) = 1) \\
+0.94 &= P( Z > -\mu_1 | \theta(i) = 1)
+\end{align*}
+Thus we solve for $\mu_1 = E(X_i^* | \theta(i)=1)$ in $1 - F_Z(-\mu_1) = 0.94$ where $F_Z$ is the distribution function for the standard normal distribution. It follows that $\mu_1 = -F_Z^{-1} (0.06) = - \texttt{qnorm}(0.06) = 1.554774$. 
+
+Similarly solving for $\mu_2 = E(X_i^* | \theta(i) = 2)$, one finds that
+\begin{align*}
+0.98 &= P(X^* < 0 | \theta(i) = 2) \\
+0.98 &= P((X^* - \mu_2) \ \sigma < -\mu_2 / \sigma | \theta(i) = 2) \\
+0.98 &= P( Z < -\mu_2 | \theta(i) = 2)
+\end{align*}
+So $\mu = -F_Z^{-1}(0.98) = -\texttt{qnorm}(0.98) = -2.053749$.
+
+The simulations yielded $2.184648$ for the first expectation and $2.156$ for the second expectation.
+\end{proof}
+
+\item
+Assume that the random variable $X$ has finite $E|X|$ and is continuous (has a density). Show that $E|X - a|$ is minimun at $a=$ median$(X)$.
+\begin{proof}
+Let $f(x)$ be the density function of $X$. Calculating,
+\begin{align*}
+\frac{d}{da} E|X| &= \frac{d}{da} \int_{-\infty}^{\infty} |x - a| f(x) dx \\
+&= \int_{-\infty}^{\infty} \frac{d}{da}  |x - a| f(x) dx \\
+&= \int_{-\infty}^{a} f(x) dx + \int_{a}^{\infty} - f(x) dx \\
+&= \int_{-\infty}^{a} f(x) dx - \int_{a}^{\infty} f(x) dx
+\end{align*}
+Setting this derivative to $0$, we have equality for the value of $a$ for which
+\[
+F(a) = \int_{-\infty}^{a} f(x) dx = \int_{a}^{\infty} f(x) dx = 1 - F(a) \text{.}
+\]
+That is where $1 - F(a) = F(a) = 0.5$, or when $a =$ median$(X)$. The second derivate with respect to $a$ is $d/da(F(a) - (1 - F(a))) = 2f(a) >0$. Thus the $a$ that we found is a minimum for the original function.
+\end{proof}
+
+\item
+We want to estimate the true value of the scalar $\theta$, and we have a loss function $l(\theta, a) = |\theta - a|$. Based on previous similar studies, we believe that, a priori, $\P(\theta) = N (\mu_0, \tau_0^2)$, where $\mu_0$ and $\tau_0$ are known values. To help us estimate $\theta$, we design a study that gives us data $X$ where 
+ $\P(X | \theta) = N(\theta, \sigma_0^2)$, and  where $\sigma_0^2$ is assumed known.
+\begin{enumerate}[1.]
+\item
+Find the posterior distribution $\P(\theta | X)$.
+\begin{proof}
+According to \url{http://zoe.bme.gatech.edu/~bv20/bmestat/Bank/bayes.pdf}, the posterior distribution is 
+\[
+\theta | X \sim N \left( \frac{\tau_0^2}{\sigma_0^2 + \tau_0^2} X + \frac{\sigma_0^2}{\sigma_0^2 + \tau_0^2} \mu_0, \frac{\sigma_0^2\tau_0^2}{\sigma_0^2 + \tau_0^2} \right)
+\]
+\end{proof}
+\item
+Using Exercise 3, find the Bayes estimator for this problem, i.e. the estimate $s(X)$ that minimizes $E \{E (l ( \theta, s(X)) | \theta  ) \}$, where the outer expectation is with respect to the prior distribution for $\theta$.
+\end{enumerate}
+
+\item
+Refer to Problem 4, and suppose we have iid observations from the likelihood. By considering a sequence of priors, each as in problem 4, but with mean $0$ and $\tau_0$ increasing with the sequence, show that the sample average is a minimax estimator. (Hint: note that the sample average is equalizer).
+
+\end{enumerate}
+
+\end{document}

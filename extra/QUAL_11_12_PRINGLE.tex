@@ -1,0 +1,495 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 May 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cov}{\text{cov}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{550.621 Probability}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Frangakis}
+\newcommand{\assignmentnumber}{Personal Assignment}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{2011, 2012 Comprehensive Exam questions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{2011}
+\begin{enumerate}
+\item
+You wish to obtain an estimator $\hat{\mu}$ of $\mu$ that is 
+consistent for $\mu$, in the sense that, as $n$ grows, 
+$\hat{\mu} \to_P \mu$. Decide which of the two estimators,
+\begin{equation}
+\frac{\sum_h P_h \bar{E}_h}{\sum_h P_h}
+\text{, or }
+\frac{1}{n} \sum_h \bar{E}_h
+\end{equation}
+you will choose as your estimator $\hat{\mu}$ and justify your choice. From now on call $\hat{\mu}$ your chosen estimator.
+\begin{proof}
+Since $\mu$ is defined as ``the average per-person health-related expenditure that was spent out of pocket by the $P$ persons last year,'' to me that means
+\begin{equation}
+\mu = \frac{\sum_{i=1}^P X_i}{P}
+\end{equation}
+where $X_i$ is the expenditure of person $i$. The second estimate is clearly a weighted average, weighted towards households with smaller counts of people. The first estimate is better because in the numerator we sum $P_h \bar{E}_h$, the total expenditures in house $h$, over all houses canvassed. Then we divide by the total number of people we got information for. Conceptually, this is exactly the definition of $\mu$, just taken the average of a smaller sample than the population.
+\end{proof}
+\item
+From now on, assume that the vectors $(P_h, \bar{E}_h), h=1,\cdots, n,$ are i.i.d. from the list $\{(P_h, \bar{E}_h), h = 1, \cdots, H\}$. Show that, under reasonable conditions, $\hat{\mu}$ is consistent for $\mu$.
+\begin{proof}
+If $H$ is finite, then clearly as $n$ grows, eventually it will be equal to $H$. In plain terms, we will poll all houses in Baltimore. The statistic, the first of (1), will equal (2), when $h$ varies from $1$ to $H$, assuming that everyone lives in a household. Thus you would account for everyone. 
+\end{proof}
+\item
+Find the large sample distribution of $\sqrt{n}(\hat{\mu} - \mu)$ as $n$ grows. Hence, find an approximate $95\%$ confidence interval for $\mu$.
+\item
+Now suppose we model $\pr(\log(\bar{E}_h \sbs P_h)$ as a normal distributions with mean $\beta_0 P_h + \beta_1 P_h^2$ and variance $\sigma^2$; and we model $\pr(P_h)$ as a discrete distribution that will place point mass at each observed value of $P_h$. Describe precisely how you would obtain the maximum likelihood estimator $\tilde{\mu}$ of $\mu$ based on these models.
+\item
+Discuss when, if ever, you would empirically choose to use $\tilde{\mu}$ versus $\hat{\mu}$.
+\end{enumerate}
+\subsection{QUESTIONS}
+\begin{itemize}
+\item
+How do you show consistency? I know the definition: as the sample size grows to infinity, then the statistic converges (in probability) to the true value. Perhaps in problem 2 we are to treat H as a VERY large number (infinite). In that case how could we show the statistic is consistent?
+\item
+I am having a hard time with problem 3. How to find the large sample distribution? Is $\hat{\mu}$ an MLE? How do we show that? Then what are the parameter of the population? The score for each observation would then follow how?
+\item
+For problem 4, is this Bayesian statistics, with a likelihood $f(x \sbs \theta) = \pr(\log(\bar{E}_h) \sbs P_h) \sim N(\beta_0 P_h + \beta_1 P_h^2, \sigma^2)$ and a prior given, $\pi(\theta)=\pr(P_h)$, is a (discrete) PMF. Then we look at the posterior, 
+\begin{equation}
+\pi(\theta \sbs x) = f(x \sbs \theta) \pi(\theta) / \int_\Theta f(x \sbs \theta) \pi(\theta) d\theta
+\end{equation}
+From here do we just evaluate the first of (1) using our posterior distribution? This is a little confusing for me.
+\item
+I am struggling to understand the word ``empirically'' in question 5.
+\end{itemize}
+
+
+
+\section{2012}
+\begin{enumerate}
+\item
+In practice (i.e. non-ideally), we only have access to the data $S_i, P_i, Y_i$ for an i.i.d. sample from the population of patients $\{i\}$, where $S_i$ is the \textit{number} of comorbidities $\sum_{k=1}^{20} M_{i,k}$ of a patient $i$. Consider the following models for these data:
+\begin{gather}
+\text{logit } \pr(Y_i=1 \sbs P_i,S_i) = \alpha' + \beta' P_i + \gamma' S_i
+\\
+\text{logit } \pr(Y_i=1 \sbs P_i,S_i = 0) = \alpha'' + \beta'' P_i
+\end{gather}
+Which of the parameters, $\beta'$ or $\beta''$, is better suited to answer the question of interest and why?
+
+\begin{proof}
+$\beta'$ represents the change in log-odds that the patient dies within one month given the same \textit{number} of comorbidities associated with having private health insurance. This averages patients with all different comorbidity profiles together, given they have the same number of comorbidities. This is not very close to what we want to study.
+
+On the other hand, $\beta''$ represents the change in log-odds that a patient dies within one month given no comorbidities (this is one specific profile) associated with having private health insurance. This would give us information that we want for the profile of no comorbidities. Thus, $\beta''$ is better suited to answer the question of interest.
+\end{proof}
+\item
+We have approximately:
+\begin{equation}
+\label{betah1}
+\hat{\beta}_{h1} \sbs \beta_{h1} \sim N(\beta_{h1}, V_{h1})
+\text{ and, independently, }
+\hat{\beta}_{h2} \sbs \beta_{h2} \sim N(\beta_{h2}, V_{h2})
+\end{equation}
+where we assume $V_{h1}, V_{h2}$ are known. By treating $\hat{\beta}_{h1},\hat{\beta}_{h2}$ now as the only available data and \eqref{betah1} as their
+likelihoods, and assuming that both $\beta_{h1}$ and $\beta_{h2}$ equal to a common value, say $\beta$, find the MLE of $\beta$.
+
+\begin{proof}
+We have 
+\begin{equation}
+f(\hat{\beta}_{h1}, \hat{\beta}_{h2}) = \varphi_{\beta, V_{h1}}(\hat{\beta}_{h1}) \varphi_{\beta, V_{h2}}(\hat{\beta}_{h2})
+=
+\frac{1}{\sqrt{2\pi V_{h1}}} \exp\left\{\frac{-(\hat{\beta}_{h1} -\beta)^2}{2V_{h1}}\right\}
+\frac{1}{\sqrt{2\pi V_{h2}}} \exp\left\{\frac{-(\hat{\beta}_{h2} -\beta)^2}{2V_{h2}}\right\}
+\end{equation}
+Taking the logarithm, we get
+\begin{equation}
+\ell = \log(f) = \frac{-1}{2}\log(2\pi V_{h1}) - \frac{(\hat{\beta}_{h1} -\beta)^2}{2V_{h1}}
+-\frac{1}{2} \log(2\pi V_{h2}) - \frac{(\hat{\beta}_{h2} -\beta)^2}{2V_{h2}}
+\end{equation}
+Taking the derivative with respect to $\beta$, we get
+\begin{equation}
+\frac{d\ell}{d\beta} = \frac{\hat{\beta}_{h1} -\beta}{V_{h1}} + \frac{\hat{\beta}_{h2} -\beta}{V_{h2}}
+\end{equation}
+Setting that to $0$ and solving for $\beta$, we get
+\begin{equation}
+\beta = \frac{V_{h2}\hat{\beta}_{h1}+V_{h1}\hat{\beta}_{h2}}{V_{h1} + V_{h2}}
+\end{equation}
+\end{proof}
+\item
+Suppose that based on the large sample distribution of the MLE estimators, we have approximately:
+\begin{equation}
+\label{2mo}
+\left.
+\begin{pmatrix}
+\hat{\beta}_{1mo} \\
+\hat{\beta}_{2mo}
+\end{pmatrix}
+\right|
+\begin{pmatrix}
+\beta_{1mo} \\
+\beta_{2mo}
+\end{pmatrix}
+\sim
+N
+\left(
+\begin{pmatrix}
+\beta_{1mo} \\
+\beta_{2mo}
+\end{pmatrix} , 
+\Sigma
+\right)
+\end{equation}
+where we assume $\Sigma$ known. Explain why $\Sigma$ will generally not be diagonal.
+\begin{proof}
+The variance-covariance matrix $\Sigma$ will not be diagonal if and only if the covariance of $\beta_{1mo}$ and $\beta_{2mo}$ is not zero.
+In general the variance of $\beta_{1mo}$ and $\beta_{2mo}$ will be non-zero. Clearly, $\beta_{2mo}$ depends on $\beta_{1mo}$: if you are dead before the first month, you will be dead before the second month. The same reasons that you have a good chance to survive one month may keep you alive for the second month.
+\end{proof}
+
+\item
+By treating 
+$\beta_{1mo},\beta_{2mo}$
+now as the only available data and \eqref{2mo} as their likelihood for $\beta_{com}$, suppose we find the MLE of $\beta_{com}$, say $\widehat{\beta_{com}}$. Can $\widehat{\beta_{com}}$ be strictly outside the interval defined by the individual MLEs $\hat{\beta}_{1mo},\hat{\beta}_{2mo}$?
+Justify your answer by either a figure or by considering simple specific values for $\hat{\beta}_{1mo},\hat{\beta}_{2mo}$ and $\Sigma$ or otherwise.
+\begin{proof}
+We know from Cauchy-Schwarz
+\begin{equation}
+\cov(X,Y)^2 \leq \var(X)\var(Y)
+\end{equation}
+This will be helpful when finding a counterexample. Denote $\Sigma$ as 
+\begin{equation}
+\Sigma = \begin{bmatrix}
+x & p \\ p & y
+\end{bmatrix}
+\end{equation}
+Then it follows that 
+$\Sigma^{-1}$ as 
+\begin{equation}
+\Sigma^{-1} =
+|\Sigma|^{-1}
+\begin{bmatrix}
+y & -p \\
+-p & x
+\end{bmatrix}
+\end{equation}
+Given \eqref{2mo},
+\begin{equation}
+f(\hat{\beta}_{1mo},\hat{\beta}_{2mo}) = 
+(2\pi)^{-n/2} |\Sigma|^{-1/2} \exp
+\left\{
+-\frac{1}{2}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}'
+|\Sigma|^{-1}
+\begin{bmatrix}
+y & -p \\
+-p & x
+\end{bmatrix}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}
+\right\}
+\end{equation}
+Next we take the logarithm then the derivative with respect to $\beta$. Notice that only the expression in the exponent of $e$ depend on $\beta$, so we can jump to
+\begin{align}
+\frac{d\log(f)}{d\beta} = 
+\frac{d \ell}{d\beta} 
+&=
+\frac{d}{d\beta}
+\left(
+-\frac{1}{2}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}'
+|\Sigma|^{-1}
+\begin{bmatrix}
+y & -p \\
+-p & x
+\end{bmatrix}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}
+\right) 
+\end{align}
+Setting $\frac{d\ell}{d\beta}$ to 0 and solving for $\beta$, we get
+\begin{align}
+0
+&=
+\frac{d}{d\beta}
+\left(
+-\frac{1}{2}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}'
+|\Sigma|^{-1}
+\begin{bmatrix}
+y & -p \\
+-p & x
+\end{bmatrix}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}
+\right) \\
+0 &= 
+\frac{d}{d\beta}
+\left(
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}'
+\begin{bmatrix}
+y & -p \\
+-p & x
+\end{bmatrix}
+\begin{pmatrix}
+\hat{\beta}_{1mo} - \beta
+\\
+\hat{\beta}_{2mo} - \beta
+\end{pmatrix}
+\right)
+\\
+\beta 
+&= \frac{
+-\frac{\left(\hat{\beta}_{1mo} + \hat{\beta}_{2mo}\right)
+} {2}
+2p + x \hat{\beta}_{2mo} + y \hat{\beta}_{1mo}}{-2 \, p + x + y}
+\label{finaldiff}
+\end{align}
+Hence $\beta$ is the MLE $\widehat{\beta_{com}}$.
+(\textsc{Note:} Calculations for \eqref{finaldiff} were completed on paper and with \texttt{SAGE}. They are not reproduced here due to the tedious nature of the algebra). We now seek a counterexample. Let $\hat{\beta}_{1mo} \leq \hat{\beta}_{2mo}$. We choose our variables such that 
+\begin{equation}
+-\frac{\left(\hat{\beta}_{1mo} + \hat{\beta}_{2mo}\right)
+} {2}
+2p
++
+x \hat{\beta}_{2mo}
+\leq
+-\hat{\beta}_{1mo} 2 p + x \hat{\beta}_{1mo}
+\end{equation}
+Say, $y = 10$, $p=1.7$, and $x=0.4$, and therefore,
+\begin{equation}
+\Sigma = \begin{bmatrix}
+0.4 & 1.7 \\ 1.7 & 10
+\end{bmatrix}
+\end{equation} 
+This satisifies Cauchy-Schwarz.
+Let $\hat{\beta}_{1mo} = 0$ and $\hat{\beta}_{2mo} = 1$, then by \eqref{finaldiff}, $\widehat{\beta_{com}}=-0.1857$. Hence $\widehat{\beta_{com}}$ is outside of the range defined by $[\hat{\beta}_{1mo}, \hat{\beta}_{2mo}]$
+\end{proof}
+\end{enumerate}
+
+\end{document}

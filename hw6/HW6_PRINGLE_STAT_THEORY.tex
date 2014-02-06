@@ -1,0 +1,491 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 May 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[footnotesize]{caption}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\imii}{\int_{-\infty}^\infty}
+\newcommand{\pion}{\prod_{i=1}^n}
+\newcommand{\pjon}{\prod_{j=1}^n}
+\newcommand{\pkon}{\prod_{k=1}^n}
+\newcommand{\sion}{\sum_{i=1}^n}
+\newcommand{\sjon}{\sum_{j=1}^n}
+\newcommand{\skon}{\sum_{k=1}^n}
+\newcommand{\sioi}{\sum_{i=1}^\infty}
+\newcommand{\sjoi}{\sum_{j=1}^\infty}
+\newcommand{\skoi}{\sum_{k=1}^\infty}
+\newcommand{\sio}{\sum_{i=1}}
+\newcommand{\sjo}{\sum_{j=1}}
+\newcommand{\sko}{\sum_{k=1}}
+% Typography
+\newcommand{\scb}[1]{\textsc{\textbf{#1}}}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.674 Stat Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Assignment 6}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{The microarray experiment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Let $Z$ be a Bernoulli random variable with probability 
+$\pr(Z = 1) = \pi$; let $Y$ be such that, if $Z = 1$, then
+$Y$ is a draw from a standard normal distribution; but if 
+$Z = 0$, then $Y$ is a draw from a normal distribution with
+mean $\mu$ and variance $1$.
+\begin{enumerate}[(i)]
+\item
+Find $E(Y \sbs \mu,\pi)$.
+\begin{proof}
+The problem defines $Y$ as a mixture distribution. We have 
+\begin{equation}
+Y = \pi N(0,1) + (1-\pi) N(\mu, 1)
+\end{equation}
+By the linearity of expected value, we have
+\begin{align}
+E(Y \sbs \mu, \pi) &= E(\pi N(0,1) + (1-\pi) N(\mu, 1)) \\
+&= \pi E(N(0,1)) + (1 - \pi) E(N(\mu,1)) \\
+&= (1 - \pi) \mu
+\end{align}
+\end{proof}
+\item
+Find $E(Y^2 \sbs \mu, \pi)$.
+\begin{proof}
+Let $\varphi_{\mu,\sigma^2}$ denote the density of $N(\mu,\sigma^2)$. 
+By 
+\href{http://en.wikipedia.org/wiki/Mixture_distribution#Finite_and_countable_mixtures}
+{Wikipedia (mixture distribution)},
+the density of $Y$ as in (1) is 
+\begin{equation}
+f_Y(y) = \pi \varphi_{0, 1}(y) + (1-\pi) \varphi_{\mu, 1}(y)
+\end{equation}
+Therefore,
+\begin{align}
+E(Y^2 \sbs \mu, \pi) 
+&= \imii y^2 f_Y(y) dy \\
+&= \imii y^2 (\pi \varphi_{0, 1}(y) + (1-\pi) \varphi_{\mu, 1}(y)) dy \\
+&= \pi \imii y^2 \varphi_{0, 1}(y) dy +
+(1-\pi) \imii y^2 \varphi_{\mu, 1}(y) dy \\
+&= \pi E(N(0,1)^2) + (1 - \pi) E(N(\mu,1)^2)
+\end{align}
+We know the variance of a random variable $X$ is 
+\begin{equation}
+\var(X) = E(X^2) - E(X)^2
+\end{equation}
+Both normal random variables in (9) have variance $1$. Applying (10) to (9), we have 
+\begin{equation}
+E(Y^2 \sbs \mu, \pi) 
+=
+\pi (1 + 0^2) + (1 - \pi) (1 + \mu^2) = 1 + (1 - \pi)\mu^2
+\end{equation}
+\end{proof}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 2                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+One type of experiment of microarray technology is summarized as follows:
+\begin{enumerate}
+\item[(a)]
+A chip has a very large number of spots, say, $i = 1, \cdots, n = 10000$ spots. In each different specific spot $i$ we place a different specific gene $i$.
+\item
+In each spot $i$, approximately equal abundance of cancerous and non-cancerous tissue are then placed. 
+We can then compare the relative abundance of gene $i$'s DNA 
+that binds to the cancerous versus to the non-cancerous tissue.
+Basically, for each gene $i$, this comparison leads to constructing a statistic $Y_i$.
+\end{enumerate}
+For this problem set, assume that (a) a gene $i$ is either equally expressed in both types of tissue (in which case we say $Z_i = 1$) or it is not (in which case we say that $Z_i = 0$);
+(b) $Z_i, i=1, \cdots, 10000$ are i.i.d. Bernoulli trials with probability $\pr(Z=1) = \pi;$
+(c) $Y_i$ will be a draw from $N(0,1)$ if gene $i$ is equally expressed in both types of tissue, but $Y_i$ will be a draw from $N(\mu,1)$ (with $\mu \neq 0$) if gene $i$ is not equally exressed in the two types of tissue;
+(d) $(Z_i, Y_i)$ are independent vectors $\underline{across}$ different genes $i$;
+(e) we observe $Y_i$ but do not know $Z_i, \pi$ or $\mu$. 
+We are interested in estimating $(1-\pi)$, the proportion of genes not equally expressed, and ultimately in studying further those genes that we think are not equally expressed.
+
+\begin{enumerate}
+\item[(i)]
+You are sent by email 10000 observations $Y_i$ of a chip.
+By using problem 1 above, find moment estimates of the proportion $1-\pi$ of genes that are not equally expressed, and for $\mu$.
+\begin{proof}
+From (4) and (11) we have 
+\begin{align}
+E(Y^2 \sbs \mu, \pi) &= 1 + E(Y \sbs \mu, \pi)\mu \\
+\frac{E(Y^2 \sbs \mu, \pi) - 1}{E(Y \sbs \mu, \pi)} &= \mu
+\end{align}
+and then from (4) and (13), 
+\begin{align}
+E(Y \sbs \mu, \pi) &= (1 - \pi) 
+\frac{E(Y^2 \sbs \mu, \pi) - 1}{E(Y \sbs \mu, \pi)} \\
+\frac{E(Y \sbs \mu, \pi)^2}{E(Y^2 \sbs \mu, \pi) - 1} 
+&= 1- \pi
+\end{align}
+\end{proof}
+\item[(v)]
+Find the maximum likelihood estimate (MLE) of $1 - \pi$ and $\mu$ (e.g., use \texttt{optim} in R; in the likelihood function, parametrize $\pi$ by its logit; use starting values equal to the moment estimates). If we allow $\pi$ to be in $[0,1]$, are all the conditions in (A.1) to (A.4) in p. 516 of the text satisfied? Discuss whether we should worry or not worry about this issue with our data.
+\begin{proof}
+The likelihood function for $Y$ is the same as (5). Thus
+\begin{equation}
+L(\theta; y) = L(\mu, 1 - \pi; y) = \prod f_Y(y)
+\end{equation}
+And the log-likelihood function is
+\begin{equation}
+\label{lleq}
+\ell (\theta; y) = \log (L(\theta;y)) 
+= \sum \log(\pi) + \log (\varphi_{0,1}(y)) + \log(1-\pi) + \log (\varphi_{\mu,1}(y))
+\end{equation}
+We want to maximize the log-likelihood over the parameter space.
+Since we maximize numerically, we want the parameters to take values in $\R$. 
+Hence we map $\pi \in (0,1)$ to $\log(\pi / 1-\pi) = x$. 
+The inverse mapping is $x \mapsto \frac{e^x}{1+e^x} = \pi$ for $x \in \R$.
+With this parameterization, we maximize
+\begin{equation}
+\sum
+\log \left(
+\frac{e^x}{1+e^x}
+\right)
++ 
+\log (\varphi_{0,1}(y)) 
++ 
+\log \left(
+\frac{1}{1+e^x}
+\right) 
++ 
+\log (\varphi_{\mu,1}(y))
+\end{equation}
+over $x,\mu \in \R$. This gives MLEs for $x, \mu$. 
+By the invariance of MLE, using the inverse mapping for $x$, we get the MLE for $\pi$, and hence can get the MLE for $1-\pi$. 
+\end{proof}
+
+\item[(vi)]
+Find an approximate 95\% confidence interval for $1-\pi$ based on the MLEs
+in part (v). 
+\begin{proof}
+By the course slides, we know for a function of parameters, $g(\theta)$, the
+MLE $g(\hat{\theta}_n)$ has
+\begin{equation}
+\sqrt{n}[g(\hat{\theta}_n) - g(\theta)] \xrightarrow{d} 
+N
+\left(
+0, \frac{\partial g(\theta) }{\partial \theta}' I^{-1}(\theta) \frac{\partial g(\theta) }{\partial \theta}
+\right)
+\end{equation}
+Let $g(\theta) = g((1-\pi,\mu)) = 1 - \pi$. It follows that $\nabla g((1-\pi,\mu)) = (1,0)$.
+
+
+Consider the log-likelihood in \eqref{lleq}. Then the scores for observation $i$ are 
+\begin{equation}
+\label{scorepi}
+S_{i,1-\pi} = 
+\frac{\partial \ell}{\partial (1-\pi)} = \frac{-1}{1-(1-\pi)} + \frac{1}{1-\pi} = \frac{2\pi -1}{\pi (1-\pi)}
+\end{equation}
+and
+\begin{equation}
+S_{i,\mu} =
+\frac{\partial \ell}{\partial \mu} = 
+\frac{\partial}{\partial \mu} \left(  
+\frac{1}{\sqrt{2\pi}}
+e^{-(y_i - \mu)^2/2}
+\right)
+=\frac{1}{\sqrt{2\pi}} e^{-(y_i - \mu)^2/2} (y_i - \mu)
+\end{equation}
+We know that the information is
+\begin{equation}
+\label{info}
+I(\theta) = I((1-\pi,\mu)) = E \left[
+\begin{pmatrix}
+S_{i,1-\pi} \\
+S_{i,\mu}
+\end{pmatrix}
+\begin{pmatrix}
+S_{i, 1 - \pi} & S_{i, \mu}
+\end{pmatrix}
+\right]
+\end{equation}
+For this problem, we calculate
+\begin{equation}
+\label{indsc}
+\left[
+\begin{pmatrix}
+S_{i,1-\pi} \\
+S_{i,\mu}
+\end{pmatrix}
+\begin{pmatrix}
+S_{i, 1 - \pi} & S_{i, \mu}
+\end{pmatrix}
+\right]
+\end{equation}
+for each observation $Y_i$. Then we take the mean of all those results to get $\overline{I(\theta)}$. Denote the inverse of $\overline{I(\theta)}$ as $\overline{I^{-1}(\theta)}$. Note, 
+\begin{equation}
+\frac{\partial g(\theta) }{\partial \theta}' \overline{I^{-1}(\theta)} \frac{\partial g(\theta) }{\partial \theta}
+=
+\begin{pmatrix}
+1 & 0
+\end{pmatrix}
+\overline{I^{-1}(\theta)}
+\begin{pmatrix}
+1 \\ 0
+\end{pmatrix}
+=
+[\overline{I^{-1}(\theta)}]_{1,1}
+\end{equation}
+Hence, to calculate a 95\% confidence interval, 
+\begin{align}
+0.95 &\approx P(
+-1.96\sqrt{[\overline{I^{-1}(\theta)}]_{1,1}} 
+\leq 
+\sqrt{n} ((1 - \pi^{\text{MLE}}) - (1 - \pi))
+\leq 
+1.96\sqrt{[\overline{I^{-1}(\theta)}]_{1,1}}
+) \\
+&=
+P(
+1.96\sqrt{[\overline{I^{-1}(\theta)}]_{1,1}}n^{-1/2} + 1 - \pi^{\text{MLE}}
+\geq
+1-\pi
+\geq
+-1.96\sqrt{[\overline{I^{-1}(\theta)}]_{1,1}}n^{-1/2} + 1 - \pi^{\text{MLE}}
+)
+\label{ci}
+\end{align}
+The calculations in R give
+\begin{equation}
+\overline{I(\theta)} =
+\begin{pmatrix}
+200.2009 & -1.5267 \\
+-1.5267 & 0.0278
+\end{pmatrix}
+\quad \text{and}
+\quad
+\overline{I^{-1}(\theta)}
+=
+\begin{pmatrix}
+0.0086 & 0.4706 \\
+0.4706 & 61.7120
+\end{pmatrix}
+\end{equation}
+And a confidence interval for $1 - \pi$, using \eqref{ci}, is
+\begin{equation}
+[0.0639,0.0675]
+\end{equation}
+
+
+\textbf{QUESTIONS}
+\begin{itemize}
+\item
+How do you approximate $I(\theta)$? My thought is to use the MLE for $1-\pi$ and $\mu$, calculate a score for each observation, average them, and that is a good estimate of $I(\theta)$. But why do you use the MLE? Does that estimate converge to $I(\theta)$ because of the central limit theorem? Are there other convergence theorems involved here that I do not see?
+\item
+Is \eqref{info} correct? Where does that come from? Is it problematic that \eqref{indsc} is not invertible?
+\item
+Is it correct that \eqref{scorepi} does not depend on the observation? I believe the math, but why should that be so?
+\end{itemize}
+\end{proof}
+\end{enumerate}
+
+\begin{equation}
+{\left(\beta - \beta_{2}\right)} {\left({\left(\beta - \beta_{2}\right)} y + {\left(\beta - \beta_{1}\right)} p\right)} + {\left(\beta - \beta_{1}\right)} {\left({\left(\beta - \beta_{2}\right)} p + {\left(\beta - \beta_{1}\right)} x\right)}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+\end{document}

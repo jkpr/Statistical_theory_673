@@ -1,0 +1,427 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{Statistical Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Problem Set 2}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Problems (i) through (v)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+Let $Y^{obs}$ 
+denote the vector $(Y_{1},...,Y_{n})$ except that $Y_{i}$ is
+replaced by NA (for ``not available'') 
+if $I_{i}=0$; let $Y^{mis}$ be the missing outcomes; 
+and let $I=(I_{1},...,I_{n})$. Then, the likelihood of the data $(Y^{obs}, I)$ is:
+\begin{equation}
+\label{top}
+\pr(Y^{obs}, I \;|\; \theta, \alpha) 
+= \prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)
+\prod_{i:I_i = 0} \int f(Y_i, \theta)(1 - \pi (Y_i,\alpha))dY_i 
+\end{equation}
+
+
+Questions. Assume that $n$ ``eligible''
+persons are starting their stay to nursing homes in a time window around the present time; 
+assume that our study is actually conducted by visiting a simple random sample of people who \textit{right now} are at nursing homes; 
+assume that $Y_{i}$ is the total length that person $i$ has stayed and will stay at the home; 
+and assume that all those we visited now are followed-up and we
+find out $Y_{i}$ for these people. 
+The latter sample of $Y_{i}$ is only a subset of the ``eligible persons'' and is more likely to include an ``eligible''
+person with a longer than a shorter stay $Y_{i}$. 
+To address this phenomenon, known in Biometry as length bias, assume here that the probability, 
+$\pi (y_{i},\alpha )$, of getting an ``eligible'' $Y_{i}$ in our study sample is $Y_i={Y_{i}}/{\alpha }$,
+where is the maximum length of stay that can occur (i.e., 
+$f(y;\theta )=0$ for $y>\alpha $ ).
+
+
+\begin{enumerate}[(i)]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem i                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Using this model, and \eqref{top} above, write down the likelihood of the data $D_0 = (Y^{obs}, I_1, \cdots, I_n)$ in terms of $f()$ and $\alpha$, simplifying where possible.
+
+\begin{proof}
+From \eqref{top}, we start calculating
+\begin{align}
+\pr(D_0 \sbs \theta, \alpha) &= \pr(Y^{obs}, I \;|\; \theta, \alpha) \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)
+\prod_{i:I_i = 0} \int f(Y_i, \theta)(1 - \pi (Y_i,\alpha))dY_i \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \int f(Y_i, \theta) - \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \label{eq4}\\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \left(\int f(Y_i, \theta) dY_i - \int \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \right) \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \left(1 - \frac{1}{\alpha} E_\theta[Y_i] \right) 
+\label{eq6}\\
+&= \left(\prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha} \right)
+\left(1 - \frac{1}{\alpha} E_\theta[Y_i] \right)^{n_2} \label{eq7}
+\end{align}
+Equation \eqref{eq4} follows from the preceding one because $\pi(Y_i, \alpha) = Y_i / \alpha$. In \eqref{eq6}, $E_{\theta}$ is the conditional expectation, given $\theta$. The $n_2$ in \eqref{eq7} is the total number of unobserved people---in other words, $|\{i : I_i = 0\}|$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem ii                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+In practice, we do not know the number of ``eligible'' persons, but we know the number of people, $n_1$, with $I_I = 1$ in step 2. 
+Suppose we \textit{observe} $Y_i$ from $n_1 = 500$ people at step 2.
+Write down the likelihood of the data $\{Y_i : i = 1, \cdots, n_1\}$ given $\{I_i = 1 : i = 1, \cdots, n_1\}$ and given $n_1 = 500$. 
+
+\begin{proof}
+The likelihood of the data $\{Y_i : i = 1, \cdots, n_1\}$ given $\{I_i = 1 : i = 1, \cdots, n_1\}$ is 
+\begin{align}
+\pr(Y_i \sbs I_i = 1, \theta, \alpha) 
+&= \frac{\pr(Y_i, I_i = 1 \sbs \theta, \alpha)}{\pr(I_i = 1 \sbs \theta, \alpha)} \\
+&= \frac{\prod_{i=1}^{500} f(Y_i, \theta) \frac{Y_i}{\alpha}}{\pr(I_i = 1 \sbs \alpha)}
+\end{align}
+Equation (8) follows from the definition of conditional probability. 
+The numerator in (9) comes from \eqref{eq7} and the hypothesis that $n_2 = 0$. 
+The denominator in (9) is equal to the denominator in (8) since $\pr(I_i = 1 \sbs \alpha)$ does not depend on $\theta$. 
+Now we find by the \hrefgray
+{http://en.wikipedia.org/wiki/Law_of_total_probability\#Statement}
+{law of total probability}
+\begin{align}
+\pr(I_i = 1 \sbs \alpha) 
+&= \pr(I_i = 1 \sbs \alpha, \theta) \\
+&= \int \pr(I_i = 1 \sbs Y_i, \alpha, \theta) f(Y_i, \theta) dY_i \\
+&= \int \pi(y, \alpha) f(Y_i, \theta) dY_i \\
+&= \int \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \\
+&= E_\theta[Y_i] / \alpha
+\end{align}
+Hence, from (9) and (14) we have by independence of $Y_i$'s and indendence with $I_i$ that 
+\begin{align}
+\pr(Y_i \sbs I_i = 1, \theta, \alpha) 
+&= \frac{\prod_{i=1}^{500} f(Y_i, \theta) \frac{Y_i}{\alpha}}
+{\prod_{i=1}^{500}E_\theta[Y_i] / \alpha} \\
+&= \prod_{i=1}^{500} \frac{f(Y_i, \theta) Y_i}{E_\theta[Y_i]}
+\end{align}
+This is the likelihood equation we seek.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem iii                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Assume that, \textit{in the target population} of people who go to nursing homes, 
+the length of stay $Y$ is a Gamma random variable with mean $\theta_1$ and variance $\theta_2$. 
+What is the expectation of $Y_i$ given $I_i = 1$?
+
+\begin{proof}
+By (16), we have
+\begin{align}
+\pr(Y_i \sbs I_i =1, \theta, \alpha) 
+= f(Y_i, \theta) Y_i / E_\theta[Y_i]
+\end{align}
+So the expectation of (17) is 
+\begin{align}
+E[Y_i | I_i = 1, \alpha] 
+&= \int \frac{Y_i^2}{E[Y_i]}f(Y_i) dY_i \\
+&= \frac{1}{E[Y_i]} E[Y_i^2] \\
+&= \frac{1}{E[Y_i]} (\var(Y_i) + E[Y_i]^2) \\
+&= \frac{1}{\theta_1} (\theta_2 + \theta_1^2)\\
+&= \frac{\theta_2}{\theta_1} + \theta_1
+\end{align}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem iv                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Find a minimal sufficient statistic (possibly a vector) from the likelihood in (iii) for the mean $\theta_1$ and variance $\theta_2$.
+\begin{proof}
+According to 
+\hrefgray
+{http://en.wikipedia.org/wiki/Gamma_distribution}
+{Wikipedia}
+the density of the gamma distribution is
+\begin{align}
+f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1}e^{-\beta x}
+\end{align}
+with mean $\alpha / \beta$ and variance $\alpha / \beta^2$. Since we assume $Y_i$ has a gamma distribution with mean $\theta_1$ and variance $\theta_2$, we can use the substitutions that $\alpha = \theta_1^2 / \theta_2$ and $\beta = \theta_1 / \theta_2$.
+Hence, 
+\begin{align}
+f(Y_i) = \frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2 - 1}e^{-Y_i \theta_1/\theta_2}
+\end{align}
+Plugging this in to (16), and noting that under our assumptions, $f(Y_i, \theta) = f(Y_i)$ we have
+\begin{align}
+\pr(Y_i \sbs I_i = 1, \theta_1, \theta_2) 
+&= \prod_{i=1}^{500} 
+\frac{\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2 - 1}e^{-Y_i \theta_1/\theta_2} Y_i}
+{E[Y_i]} \\
+&= \prod_{i=1}^{500} 
+\frac{\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2}e^{-Y_i \theta_1/\theta_2}}
+{\theta_1} \\
+&= \prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2} Y_i^{\theta_1^2 / \theta_2}e^{-Y_i \theta_1/\theta_2}}
+{\theta_1 \Gamma(\theta_1^2 / \theta_2)}
+\end{align} 
+From our class definitions, a statistic $T()$ is a minimally sufficient statistic for $\theta_1, \theta_2$ if and only if
+\begin{align}
+T(x) = T(y) \quad \text{if and only if} \quad \frac{\pr(x \sbs \theta_1, \theta_2)}{\pr(y \sbs \theta_1, \theta_2)} \quad \text{is free of $\theta$}
+\end{align}
+So assume we have another random variable family $X_i$ with the same distribution as $Y_i$, then 
+\begin{align}
+\frac{\pr(Y_i \sbs \theta_1, \theta_2)}{\pr(X \sbs \theta_1, \theta_2)} 
+&= \frac{\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2} Y_i^{\theta_1^2 / \theta_2}e^{-Y_i \theta_1/\theta_2}}
+{\theta_1 \Gamma(\theta_1^2 / \theta_2)}}
+{\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2} X_i^{\theta_1^2 / \theta_2}e^{-X_i \theta_1/\theta_2}}
+{\theta_1 \Gamma(\theta_1^2 / \theta_2)}} \\
+&= \prod_{i=1}^{500} 
+\frac{Y_i^{\theta_1^2 / \theta_2}e^{-Y_i \theta_1/\theta_2}}
+{X_i^{\theta_1^2 / \theta_2}e^{-X_i \theta_1/\theta_2}} \\
+&= \prod_{i=1}^{500} \left(\frac{Y_i}{X_i}\right)^{\theta_1^2 /\theta_2} e^{(-Y_i + X_i)\theta_1 /\theta_2} \\
+&= \left( \prod_{i=1}^{500} \frac{Y_i}{X_i}\right)^{\theta_1^2 /\theta_2} e^{(\theta_1 /\theta_2)\sum_{i=1}^{500}(-Y_i + X_i)}
+\end{align}
+Thus, if $\prod_{i=1}^{500} Y_i= \prod_{i=1}^{500}X_i$ and $\sum_{i=1}^{500}Y_i = \sum_{i=1}^{500}X_i$, the conditions will be met. 
+Hence $T(\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$ is a minimally sufficient statistic.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem v                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item 
+What would the likelihood in (iii) be and what would be the minimal sufficient statistic if we had mistakenly assumed that $\pi(Y_i, \alpha)$ is not a function of $Y_i$? 
+Would we end up with the same 	inference for $\theta_1$ and $\theta_2$ in that case where we assumed the length-biased $\pi(Y_i, \alpha)$, and why?
+
+\begin{proof}
+Now we assume that $pi(Y_i, \alpha) = g(\alpha)$ some function of $\alpha$. Then (14) becomes 
+\begin{align}
+\pr(I_i = 1 \sbs \alpha) 
+&= \int \pi (y, \alpha) f (Y_i, \theta) dY_i \\
+&= \int g(\alpha)  f (Y_i, \theta) dY_i  \\
+&= g(\alpha)  \int f (Y_i, \theta) dY_i  \\
+&= g(\alpha)
+\end{align}
+Then (16) becomes
+\begin{align}
+\pr(Y_i \sbs I_i = 1, \theta, \alpha) 
+&= \prod_{i=1}^{500} 
+\frac{f(Y_i, \theta) g(\alpha)}{g(\alpha)} \\
+&= \prod_{i=1}^{500} 
+f(Y_i, \theta)
+\end{align}
+And that is the likelihood from (ii).
+Then (18) with (38) become the new (22)
+\begin{align}
+E[Y_i \sbs I_i = 1, \alpha] 
+&= \int Y_i f(Y_i) dY_i \\
+&= E[Y_i] \\
+&= \theta_1
+\end{align}
+\end{proof}
+Since we used (16) to find the answer to (iv) we use (38). 
+That gives
+\begin{align}
+\frac{\pr(Y_i \sbs \theta_1, \theta_2)}{\pr(X \sbs \theta_1, \theta_2)} 
+&= \frac{\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2} Y_i^{\theta_1^2 / \theta_2 -1}e^{-Y_i \theta_1/\theta_2}}
+{\Gamma(\theta_1^2 / \theta_2)}}
+{\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2} X_i^{\theta_1^2 / \theta_2 -1}e^{-X_i \theta_1/\theta_2}}
+{\Gamma(\theta_1^2 / \theta_2)}} \\
+&= \prod_{i=1}^{500} 
+\frac{Y_i^{\theta_1^2 / \theta_2 -1 }e^{-Y_i \theta_1/\theta_2}}
+{X_i^{\theta_1^2 / \theta_2 -1}e^{-X_i \theta_1/\theta_2}} \\
+&= \prod_{i=1}^{500} \left(\frac{Y_i}{X_i}\right)^{\theta_1^2 /\theta_2 -1} e^{(-Y_i + X_i)\theta_1 /\theta_2} \\
+&= \left( \prod_{i=1}^{500} \frac{Y_i}{X_i}\right)^{\theta_1^2 /\theta_2 -1} e^{(\theta_1 /\theta_2)\sum_{i=1}^{500}(-Y_i + X_i)}
+\end{align}
+And thus we have the same minimally sufficient statistic, $T(\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$.
+
+It is not clear what this says about the inference on $\theta$.
+\end{enumerate}
+\end{document}
