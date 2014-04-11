@@ -1,0 +1,6 @@
+.Rhistory
+*.aux
+.DS_store
+*.log
+*.out
+*.synctex.gz

@@ -1,0 +1,1113 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\sion}{\sum_{i=1}^n}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.673 Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Assignment 3}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+\section*{Problem 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem 1                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+You have been sent by email the data $Y_{i}$
+of $500$ persons, which are the lengths of stay
+described in problem 2, part (ii) of the previous problem set.
+\textbf{(i)}
+By equating the expressions for $E(Y_{i}|I_{i}=1,\theta )$
+and $\var(Y_{i}|I_{i}=1,\theta )$ (in terms of $\theta _{
+\mathbf{1}}$
+and $\theta _{\mathbf{2}}$) to the sample
+mean and variance of your data 
+$Y_\mathbf{i}$, find estimates of 
+$\theta _{\mathbf{1}}$ and 
+$\theta _{\mathbf{2}}$. This is
+called a ``moment estimation'' method.
+
+\begin{proof}
+Let 
+\begin{align*}
+m_1 &= \frac{1}{n} \sum_{i=1}^n Y_i = \overline{Y_n} \\
+m_2 &= \frac{1}{n-1} \sum_{i=1}^n (Y_i-m_1)^2 = s_n
+\end{align*}
+be the sample mean and variance of the data $Y_i$. From problem set 2,
+\[
+\mu_1 = E[Y_i|I_i=1, \theta] = \frac{\theta_2}{\theta_1} + \theta_1
+\]
+and calculating,
+\begin{align*}
+\mu_2 
+&=
+\var(\mu_2)
+\\
+&=
+E[Y_i^2 | I_i=1, \theta] - E[Y_i | I_i=1, \theta]^2
+\\
+&= 
+\int E[Y_i | \theta]^{-1}f(Y_i, \theta)Y_i^3 dY_i
+- 
+\left(
+\frac{\theta_2}{\theta_1} + \theta_1
+\right)^2
+\\
+&=
+\theta_1^{-1}E[Y_i^3 | \theta]
+-
+\left(
+\frac{\theta_2^2}{\theta_1^2} + 2\theta_2 + \theta_1^2
+\right)
+\\
+&=
+\theta_1^{-1}
+\left(
+\theta_1^3 + 3\theta_1\theta_2 + 2 \theta_2^2\theta_1^{-1}
+\right)
+-
+\left(
+\frac{\theta_2^2}{\theta_1^2} + 2\theta_2 + \theta_1^2
+\right)
+\\
+&=
+\theta_1^2 +3\theta_2 +2\theta^2_2\theta_1^{-2}
+-
+\left(
+\frac{\theta_2^2}{\theta_1^2} + 2\theta_2 + \theta_1^2
+\right)
+\\
+&=
+\frac{\theta_2^2}{\theta_1^2} + \theta_2
+\end{align*}
+See \url{http://bit.ly/N6zu5j} for a derivation of the third moment of the gamma distribution. Therefore,
+\begin{align*}
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+&=
+\frac{
+\left(
+\frac{\theta_2}{\theta_1} + \theta_1
+\right)^2
+-
+\frac{\theta_2^2}{\theta_1^2} + \theta_2
+}{
+\frac{\theta_2}{\theta_1} + \theta_1
+}
+\\
+&=
+\frac{
+\frac{\theta_2^2}{\theta_1^2} + 2\theta_2 + \theta_1^2
+-
+\frac{\theta_2^2}{\theta_1^2} + \theta_2
+}{
+\frac{\theta_2}{\theta_1} + \theta_1
+}
+\\
+&=
+\frac{
+\theta_2 + \theta_1^2
+}{
+\frac{1}{\theta_1}
+(\theta_2 + \theta_1^2)
+}
+\\
+&=
+\theta_1
+\end{align*}
+and
+\begin{align*}
+\theta_2 
+&=
+\left(
+\frac{\theta_2}{\theta_1} + \theta_1
+-\theta_1
+\right)
+\theta_1
+\\
+&=
+\left(
+\mu_1 -
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+\right)
+\left(
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+\right)
+\\
+&=
+\left(
+\frac{\mu_1^2}{\mu_1} -
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+\right)
+\left(
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+\right)
+\\
+&=
+\left(
+\frac{\mu_2}{\mu_1} 
+\right)
+\left(
+\frac{\mu_1^2 - \mu_2}{\mu_1}
+\right)
+\\
+&=
+\frac{\mu_1^2\mu_2 - \mu_2^2}{\mu_1^2}
+\end{align*}
+Replacing $\mu_j$ by $m_j$ we the method of moments estimators are
+\begin{align*}
+\theta_1^{MM} &=  \frac{m_1^2 - m_2}{m_1} œ= \frac{(\overline{Y_n})^2 - s_n}{\overline{Y_n}}
+\\
+\theta_2^{MM} &= \frac{m_1^2m_2 - m_2^2}{m_1^2}
+=
+\frac{(\overline{Y_n})^2s_n - s_n^2}{(\overline{Y_n})^2}
+\end{align*}
+Calculating,
+<<>>=
+dat_file <- "data9.txt"
+dat_str <- paste(readLines(dat_file), collapse="")
+dat <- eval(parse(text=dat_str))
+
+head(dat)
+summary(dat)
+length(dat)
+
+m1 <- mean(dat)
+m2 <- var(dat)
+mm1 <- (m1^2 - m2)/m1
+mm2 <- (m1^2*m2 - m2^2)/(m1^2)
+theta_mm <- c(mm1, mm2)
+
+theta_mm
+@
+Thus the estimates from the method of moments are
+\[
+\begin{bmatrix}
+\theta_1^{MM}
+\\
+\theta_2^{MM}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Sexpr{theta_mm[1]}
+\\
+\Sexpr{theta_mm[2]}
+\end{bmatrix}
+\]
+\subsection*{Another Method of Moments}
+We use the method of moments as described on Casella and Berger, pg 312. 
+\begin{align*}
+m_1 = \frac{1}{n} \sum_{i=1}^n Y_i, &\quad \mu_1' = E[Y_i|I_i=1, \theta] = \frac{\theta_2}{\theta_1} + \theta_1
+\quad \text{by problem set 2, problem (iii)} \\
+%= E[Y^2|\theta] = \theta_2 + \theta_1^2 \quad \text{by problem set 2}
+\end{align*}
+Calculating,
+\begin{align*}
+m_2 = \frac{1}{n} \sum_{i=1}^n Y_i^2, \quad 
+\mu_2' =
+E[Y_i^2 | I_i=1, \theta] 
+&= 
+\int E[Y_i | \theta]^{-1}f(Y_i, \theta)Y_i^3 dY_i
+\\
+&=
+\theta_1^{-1}E[Y_i^3 | \theta]
+\\
+&=
+\theta_1^{-1}
+\left(
+\theta_1^3 + 3\theta_1\theta_2 + 2 \theta_2^2\theta_1^{-1}
+\right)
+\\
+&=
+\theta_1^2 +3\theta_2 +2\theta^2_2\theta_1^{-2}
+\end{align*}
+Let $\theta_1 = k\gamma$ where $k > 0$ is the shape and $\gamma >0$ is the scale. Then $\theta_2 = k\gamma^2$.
+Therefore,
+\[
+\mu_1' = \frac{k\gamma^2}{k\gamma} + k\gamma = \gamma(k+1)
+\]
+and
+\[
+\mu_2' = k^2\gamma^2 +3k\gamma^2 + 2\gamma^2 = \gamma^2(k+1)+\gamma^2(k+1)^2
+\]
+Calculating,
+\begin{align*}
+\gamma
+&=
+\frac{
+\gamma^2 (k+1) + \gamma^2(k+1)^2 - (\gamma(k+1))^2
+}
+{
+\gamma(k+1)
+}
+\\
+&=
+\frac{
+\mu_2' - (\mu_1')^2
+}{\mu_1'}
+\end{align*}
+Furthermore,
+\begin{align*}
+k 
+&= 
+\frac{\gamma(k+1)}{\gamma} - 1
+\\
+&=
+\frac{\mu_1'}{\frac{
+\mu_2' - (\mu_1')^2
+}{\mu_1'}}
+-
+1
+\\
+&=
+\frac{(\mu_1')^2}{\mu_2' - (\mu_1')^2}
+-
+1
+\\
+&=
+\frac{2(\mu_1')^2 - \mu_2'}{\mu_2' - (\mu_1')^2}
+\end{align*}
+Combining these definitions of $\gamma$ and $k$, it follows
+\begin{align*}
+\theta_1 
+&= 
+k\gamma
+\\
+&=
+\left(
+\frac{2(\mu_1')^2 - \mu_2'}{\mu_2' - (\mu_1')^2}
+\right)
+\left(
+\frac{
+\mu_2' - (\mu_1')^2
+}{\mu_1'}
+\right)
+\\
+&=
+\frac{2(\mu_1')^2 - \mu_2'}{\mu_1'}
+\end{align*}
+and
+\begin{align*}
+\theta_2
+&=
+k\gamma^2
+\\
+&=
+\left(
+\frac{2(\mu_1')^2 - \mu_2'}{\mu_2' - (\mu_1')^2}
+\right)
+\left(
+\frac{
+\mu_2' - (\mu_1')^2
+}{\mu_1'}
+\right)^2
+\\
+&=
+\left(
+\frac{2(\mu_1')^2 - \mu_2'}{\mu_1'}
+\right)
+\left(
+\frac{
+\mu_2' - (\mu_1')^2
+}{\mu_1'}
+\right)
+\\
+&=
+\frac{-2(\mu_1')^4 - (\mu_2')^2 + 3(\mu_1')^2\mu_2'}
+{(\mu_1')^2}
+\end{align*}
+Now replacing $\mu_j'$ with $m_j$, we get the moment of methods estimator.
+\begin{align*}
+\theta_1^{MM} &=
+\frac{2(\overline{Y_n})^2 - \overline{Y_n^2}}{\overline{Y_n}}
+\\
+\theta_2^{MM} &= 
+\frac{-2 (\overline{Y_n})^4 - (\overline{Y_n^2})^2 + 3(\overline{Y_n})^2 \overline{Y_n^2}}{(\overline{Y_n})^2}
+\end{align*}
+%Now we set the moments equal to each other from the sample and the population ($m_i=\mu_i$), then solve the system of equations.
+%Hence 
+%\[
+%\tilde{\theta_1} = \mu_1 = m_1 = \frac{1}{n} \sum_{i=1}^n Y_i = \bar{Y_n}
+%\]
+%and 
+%\begin{align*}
+%\tilde{\theta_2} + \tilde{\theta_1}^2 &= \mu_2 = m_2 = \frac{1}{n} \sum_{i=1}^n Y_i^2
+%\end{align*}
+%so that
+%\begin{align*}
+%\tilde{\theta_2} &= \frac{1}{n} \sum_{i=1}^n Y_i^2 - \bar{Y_n}^2 \\
+%&=
+%\frac{1}{n} \sum_{i=1}^n (Y_i^2 - \bar{Y_n}^2)
+%\\
+%&=
+%\frac{1}{n} \sum_{i=1}^n (Y_i^2 - 2\bar{Y_n}^2 + \bar{Y_n}^2)
+%\\
+%&=
+%\frac{1}{n} \sum_{i=1}^n (Y_i^2 - 2Y_i\bar{Y_n} + \bar{Y_n}^2)
+%\\
+%&= \frac{1}{n} \sum_{i=1}^n (Y_i - \bar{Y_n})^2
+%\end{align*}
+Using the data $Y_i$ of $500$ persons, the method of moments gives
+<<>>=
+m1 <- mean(dat)
+m2 <- mean(dat*dat)
+mm1 <- (2*m1^2 - m2)/m1
+mm2 <- (-2*m1^4 - m2^2 + 3*m1^2*m2)/(m1^2)
+theta_mm <- c(mm1, mm2)
+
+theta_mm
+@
+Thus the estimates from the method of moments are
+\[
+\begin{bmatrix}
+\theta_1^{MM}
+\\
+\theta_2^{MM}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Sexpr{theta_mm[1]}
+\\
+\Sexpr{theta_mm[2]}
+\end{bmatrix}
+\]
+\end{proof}
+\textbf{(ii)}
+Consider the likelihood function of your data as in
+part (ii) of the previous problem set. For the MLEs of that likelihood,
+there is no known closed form, but the MLEs can be found numerically by
+maximization algorithms. By using the algorithm ``optim'' (see \texttt{help(optim)}) in the statistical environment
+\texttt{R}, or any other appropriate algorithm
+and/or programming of your choice, find a stationary point for the mean 
+$\theta_{1}$ and variance $\theta_{2}$ of the length of stay in the target
+population.
+
+\begin{proof}
+The likelihood function from part (ii) of the last homework is 
+\begin{align*}
+\pr(Y^{obs} \sbs I_i = 1, \theta) = 
+E[Y|\theta]^{-500}
+\left(
+\prod_{i=1}^{500}
+f(Y_i,\theta) Y_i
+\right)
+\end{align*}
+Since maximizing the likelihood gives the same results as maximizing the log of the likelihood, we maximize
+\begin{equation*}
+\ell(Y^{obs} ; \theta)
+=
+\log(\pr(Y^{obs} \sbs I_i = 1, \theta)) =
+-500 \log(E[Y|\theta]) +
+ \sum_{i=1}^{500}
+ ( \log(f(Y_i, \theta)) + \log( Y_i) )
+\end{equation*}
+by varying the parameters $\theta_1$ and $\theta_2$ using \texttt{optim}. Note that $f(Y_i, \theta)$ is the density of a gamma distribution with mean $\theta_1$ and variance $\theta_2$. Therefore the shape is $\alpha = \theta_1^2 / \theta_2$ and the rate is $\beta=\theta_1/\theta_2$.
+Numerical optimization gives values for $\theta_1$ and $\theta_2$ that maximize the likelihood.
+
+% Insert code
+<<>>=
+get_log_lik <- function(theta, dat=dat)
+{
+    alpha <- theta[1]^2 / theta[2]
+    beta <- theta[1] / theta[2]
+    
+    log_pr <- dgamma(x=dat, shape=alpha, rate=beta, log=TRUE)
+    log_Y <- log(dat)
+    log_EY <- log(theta[1])
+    
+    log_lik_each <- log_pr + log_Y - log_EY
+    log_lik <- sum(log_lik_each)
+    return(log_lik)
+}
+
+optim_out <- suppressWarnings(optim(par=theta_mm, 
+                                    fn=get_log_lik, 
+                                    dat=dat, 
+                                    control=list(fnscale=-1),
+                                    hessian=TRUE))
+
+optim_out$convergence                                    
+
+theta_mle <- optim_out$par
+theta_mle
+@
+
+The convergence code 0 means that $\texttt{optim}$ successfully completed.
+The values that maximize the likelihood are 
+\[
+\begin{bmatrix}
+\hat{\theta_1}
+\\
+\hat{\theta_2}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Sexpr{theta_mle[1]}
+\\
+\Sexpr{theta_mle[2]}
+\end{bmatrix}
+\]
+\end{proof}
+
+\textbf{(iii)}
+You may get some warning messages while using the
+algorithm, which indicate possible numerical instability of the algorithm.
+To make sure the converged values of the algorithm are a maximum, check that
+the second derivative matrix of the log-likelihood, also called the Hessian
+matrix, is negative-definite (as defined in class) when evaluated at the
+converged values of the algorithm. 
+
+Note: you can obtain the Hessian matrix
+by setting the option \texttt{hessian=T} in the
+algorithm \texttt{optim}. You can use the result
+that the Hessian matrix is negative definite if and only if it satisfies the
+conditions a.-c. of example 7.2.12 of the text (p. 322).
+<<echo=F>>=
+latex_matrix <- function(mat, format="%f")
+{
+    str <- "\\begin{bmatrix}\n"
+    for (i in 1:nrow(mat))
+    {
+        line_str <- paste0(sprintf(format,mat[i,]), collapse=" & ")
+        str <- paste0(str, line_str)
+        if (i != nrow(mat))
+        {
+            str <- paste0(str, " \\\\")
+        }
+        str <- paste0(str, "\n")
+    }
+    str <- paste0(str, "\\end{bmatrix}")
+    return(str)
+}
+@
+
+\begin{proof}
+The Hessian is 
+<<>>=
+hess <- optim_out$hessian
+hess
+@
+and by
+<<>>=
+isSymmetric(hess)
+@
+\texttt{R} says that the Hessian is symmetric. Since the Hessian is symmetric, it can be diagonalized. Its eigenvalues and eigenvectors are 
+
+<<>>=
+eigen_out <- eigen(hess)
+eigen_out
+@
+
+Let $H(\hat{\theta_1}, \hat{\theta_2})$ denote the Hessian evaluated at the MLE (what was returned by \texttt{optim}).
+Then, calculating,
+\begin{align*}
+H(\hat{\theta_1}, \hat{\theta_2})
+&=
+\Sexpr{latex_matrix(hess)}
+\\
+&=
+\Sexpr{latex_matrix(eigen_out$vectors)}
+\Sexpr{latex_matrix(diag(eigen_out$values))}
+\Sexpr{t(latex_matrix(eigen_out$vectors))}
+\end{align*}
+Let $V$ be the matrix of eigenvectors. Let $D$ be the diagonal matrix of eigenvalues. Then
+\[
+H(\hat{\theta_1}, \hat{\theta_2}) = V'DV
+\]
+Notice $V$ has non-zero determinant:
+<<>>=
+det(eigen_out$vectors)
+@
+Given any non-zero $x \in \R^2$, let $Vx = y$. It follows that since $V$ is invertible, $y$ is also non-zero. Therefore,
+\begin{align*}
+x' H(\hat{\theta_1}, \hat{\theta_2}) x 
+&=
+x'V' D Vx 
+\\
+&=
+y' D y
+\\
+&=
+y_1^2 D_{11} + y_2^2 D_{22}
+< 0
+\end{align*}
+since the $y_j^2$ are non-negative, with at least one of the $y_j^2$ non-zero, and the $D_{jj}$ are both negative. Therefore, the Hessian evaluated at the MLE is negative-definite.
+\end{proof}
+
+\textbf{(iv)}
+Find the MLE of the 95th percentile of the
+distribution of lengths of stay in the target population. (Hint: you can use
+the invariance property of MLEs, and a numerical method to do the actual
+computation. For example, check the function
+\texttt{qgamma()} in \texttt{R}).
+\begin{proof}
+We assume that $Y_i$ is distributed as a gamma distribution with mean $\theta_1$ and variance $\theta_2$. Let the corresponding distribution function be $F(x | \theta_1, \theta_2)$. Thus we find the maximum likelihood estimation for $x$ such that $F(x|\theta_1, \theta_2) = 0.95$. Equivalently, we find $x = F^{-1}(0.95 | \theta_1, \theta_2)$. By the invariance property of MLEs, we have that the MLE $\hat{x}$ of $x$ is the 95th percentile of the distribution defined by the MLEs for $\theta_1$ and $\theta_2$. Hence, we seek $\hat{x}=F^{-1}(0.95|\hat{\theta_1}, \hat{\theta_2})$.
+
+<<>>=
+# Shape
+alpha <- theta_mle[1]^2 / theta_mle[2]
+# Rate
+beta <- theta_mle[1] / theta_mle[2]
+p95 <- qgamma(0.95, shape = alpha, rate = beta)
+p95
+@
+
+
+By these calculations, $\hat{x} = \Sexpr{p95}$.
+\end{proof}
+\textbf{(v)}
+Each of your colleagues has been given a different independent set of 500 people from the survey. Using each other's ML estimates, report         an estimate of the variance of the MLEs $\hat{\theta_1}$ and $\hat{\theta_2}$, and an estimate of the covariance between $\hat{\theta_1}$ and $\hat{\theta_2}$.
+
+\begin{proof}
+Calculating,
+
+<<>>=
+mle <- data.frame(
+theta1 = c(
+80.36865,
+109.7853,
+90.99945,
+81.44357,
+101.9241,
+92.92737,
+96.05893,
+70.32257,
+85.84821,
+73.89659
+),
+theta2 = c(
+10675.78343,
+13356.19,
+12486.82,
+12821.99356,
+13084.32,
+12286.38729,
+12657.37306,
+12421.78847,
+11932.33,
+11354.32
+))
+nrow(mle)
+t1t1 <- cov(mle$theta1, mle$theta1)
+t1t2 <- cov(mle$theta1, mle$theta2)
+t2t2 <- cov(mle$theta2, mle$theta2)
+t1t1
+t1t2
+t2t2
+@
+
+So the variance-covariance matrix (using subscripts for row and column number) is 
+\begin{equation*}
+\begin{bmatrix}
+\Sexpr{t1t1} & \Sexpr{t1t2} \\
+\Sexpr{t1t2} & \Sexpr{t2t2}
+\end{bmatrix}
+\end{equation*}
+\end{proof}
+
+\section*{Problem 2} We wish to study the level of a specific radioactive particle in
+an environment, using a counter. The number $X$ of particles counted by the
+counter in a time interval of 1 min. is assumed to follow a Poisson
+distribution. You have been sent 50 measurements, $X_{1},...,X_{50}$, of
+counts at different 1 min; assume the 50 measurements are i.i.d. from
+Poisson$(\mu )$.
+
+\textbf{(i)}
+Find the MLE of $\mu$. Show that the MLE is a minimal sufficient statistic for $\mu$.
+
+\begin{proof}
+The joint density of the fifty random variables is 
+\begin{align*}
+f(x_1, \cdots, x_{50} \sbs \mu) 
+&= 
+\prod_{i=1}^{50} 
+f(x_i \sbs \mu) 
+\quad \text{by independence} \\
+&= 
+\prod_{i=1}^{50}
+\frac{\mu^{x_i}}{x_i!} e^{-\mu}
+\quad \text{since all are poisson} \\
+&= 
+\mu^{\sum_{i=1}^{50} x_i} e ^{-50\mu} 
+\prod_{i=1}^{50}
+\frac{1}{x_i!}
+\end{align*}
+Now we take the derivative of the log of the joint density and set it equal to zero.
+\begin{align*}
+0 &= \frac{d}{d \mu}(\log (  f(x_1, \cdots, x_{50} \sbs \mu)   )) \\
+0 &= 
+\frac{d}{d \mu} 
+\left(\sum_{i=1}^{50} x_i \log(\mu) - 50 \mu + \sum_{i=1}^{50} \log\left(\frac{1}{x_i!} \right)    \right) \\
+0 &=
+\sum_{i=1}^{50} x_i \mu^{-1} - 50 \\
+\mu &= \frac{1}{50}\sum_{i=1}^{50} x_i \\
+\mu &= \bar{X}
+\end{align*}
+The second derivative of the likelihood is $-\sum_{i=1}^{50} x_i \mu^{-2}$. Since it is negative for all values of $\mu > 0$, we have that $\mu = \bar{X}$ is a maximum. Hence it is the MLE.
+
+To show that it is a minimal sufficient statistic for $\mu$, we apply the theorem from class notes chapter 2, slide 7. Let $\mathbf{Y} \in \R^{50}$ have the same distribution as $\mathbf{X} \in \R^{50}$. Let $T(\mathbf{Y}) = \bar{\mathbf{Y}}$, the MLE calculated above. Now suppose $T(\mathbf{X}) = T(\mathbf{Y})$.
+Then 
+\begin{align*}
+\frac{1}{50}\sum_{i=1}^{50}X_i 
+&= 
+\frac{1}{50}\sum_{i=1}^{50}Y_i
+\\
+\sum_{i=1}^{50}X_i  &= \sum_{i=1}^{50}Y_i
+\end{align*}
+and
+\begin{align*}
+\frac{f( \mathbf{x}|\mu)}{f(\mathbf{y} | \mu)}
+&=
+\prod_{i=1}^{50}
+\frac{\mu^{x_i}}{x_i!} e^{-\mu}
+/
+\prod_{i=1}^{50}
+\frac{\mu^{y_i}}{y_i!} e^{-\mu} \\
+&=
+\left(
+\mu^{\sum_{i=1}^{50}x_i}
+e^{-50\mu}
+\prod_{i=1}^{50}
+\frac{1}{x_i!} \right)
+/
+\left(\mu^{\sum_{i=1}^{50}y_i}
+e^{-50\mu}
+\prod_{i=1}^{50}
+\frac{1}{y_i!} \right)\\
+&=
+\mu^{\sum_{i=1}^{50}x_i - \sum_{i=1}^{50}y_i}
+\left(
+\prod_{i=1}^{50}
+\frac{1}{x_i!} 
+/
+\prod_{i=1}^{50}
+\frac{1}{y_i!}
+\right)
+\\
+&=
+\prod_{i=1}^{50}
+\frac{1}{x_i!} 
+/
+\prod_{i=1}^{50}
+\frac{1}{y_i!}
+\end{align*}
+which is free of $\mu$. Now suppose that 
+\[
+\frac{f( \mathbf{x}|\mu)}{f(\mathbf{y} | \mu)} 
+=
+\mu^{\sum_{i=1}^{50}x_i - \sum_{i=1}^{50}y_i}
+\left(
+\prod_{i=1}^{50}
+\frac{1}{x_i!} 
+/
+\prod_{i=1}^{50}
+\frac{1}{y_i!}
+\right)
+\]
+is free of $\mu$. Then it is the case that 
+\[
+\mu^{\sum_{i=1}^{50}x_i - \sum_{i=1}^{50}y_i}
+\]
+is constant with respect to $\mu$, so that 
+\begin{align*}
+0
+&=
+\sum_{i=1}^{50}x_i - \sum_{i=1}^{50}y_i
+\\
+\sum_{i=1}^{50}x_i
+&=
+\sum_{i=1}^{50}y_i
+\\
+\frac{1}{50}
+\sum_{i=1}^{50}x_i
+&=
+\frac{1}{50}
+\sum_{i=1}^{50}y_i
+\\
+T(\mathbf{x}) 
+&= 
+T(\mathbf{y})
+\end{align*}
+Now by the theorem we conclude that $\bar{\mathbfœ{X}}$ is a minimal sufficient statistic for $\mu$.
+\end{proof}
+%To show that it is a minimal sufficient statistic for $\mu$, we use theorem 6.2.13 in Casella and Berger, pg. 281. Suppose $Y_1, \cdots, Y_{50}$ had the same MLE as $X_1, \cdots, X_{50}$ with $\bar{Y} = \bar{X}$. Then
+%\begin{align*}
+%\frac{f( \mathbf{x}|\theta)}{f(\mathbf{y} | \theta)} 
+%&=
+%\prod_{i=1}^{50}
+%\frac{\mu^{x_i}}{x_i!} e^{-\mu}
+%/
+%\prod_{i=1}^{50}
+%\frac{\mu^{y_i}}{y_i!} e^{-\mu} \\
+%&=
+%\left(\mu^{\sum_{i=1}^{50}x_i}
+%\prod_{i=1}^{50}
+%\frac{1}{x_i!} e^{-\mu} \right)
+%/
+%\left(\mu^{\sum_{i=1}^{50}y_i}
+%\prod_{i=1}^{50}
+%\frac{1}{y_i!} e^{-\mu} \right)\\
+%&=
+%\prod_{i=1}^{50}
+%\frac{1}{x_i!} 
+%/
+%\prod_{i=1}^{50}
+%\frac{1}{y_i!}
+%\end{align*}
+%since $\sum_{i=1}^{50}x_i = \sum_{i=1}^{50}y_i$. Thus (15) is constant as a function of $\mu$. Now suppose 
+%\begin{align*}
+%\frac{f( \mathbf{x}|\theta)}{f(\mathbf{y} | \theta)} 
+%&=
+%\left(\mu^{\sum_{i=1}^{50}x_i}
+%\prod_{i=1}^{50}
+%\frac{1}{x_i!} e^{-\mu} \right)
+%/
+%\left(\mu^{\sum_{i=1}^{50}y_i}
+%\prod_{i=1}^{50}
+%\frac{1}{y_i!} e^{-\mu} \right) 
+%\end{align*}
+%is constant as a function of $\mu$. Thus 
+%\begin{equation}
+%\mu^{\sum_{i=1}^{50}x_i} = \mu^{\sum_{i=1}^{50}y_i}
+%\end{equation}
+%for all $x_i$ and $y_i$. Therefore (19) is equal to a constant, and thus 
+%\begin{equation}
+%\sum_{i=1}^{50}x_i = \sum_{i=1}^{50}y_i
+%\end{equation}
+%and $\bar{X} = \bar{Y}$. Now by the theorem we conclude that $\bar{X}$ is a minimal sufficient statistic.
+
+\textbf{(ii)}
+Suppose we are interested in $g(\mu) = \pr(X=0 \sbs \mu)$. Find the MLE of $g(\mu)$. Do you think this MLE is biased or unbiased for $g(\mu)$ and why?
+\begin{proof}
+Note that $g(\mu) = \pr(X=0 \sbs \mu) = e^{-\mu}$. Thus by the invariance property of MLEs, $\widehat{g(\mu)} = e^{-\bar{X}}$ is the MLE of $e^{-\mu}$. Applying Jensen's inequality, 
+\begin{equation*}
+E(\widehat{g(\mu)}) 
+=
+E(g(\hat{\mu})) 
+= 
+E (e ^{- \bar{X}}) 
+\geq 
+e^{E(-\bar{X})} 
+= e^{-\mu}
+\quad \text{since $\bar{X}$ is unbiased for $\mu$}
+\end{equation*}
+Since we are dealing with a strictly convex function, we do not have equality, and thus the MLE for $g(\mu)$ is biased, i.e.
+\[
+E(\widehat{g(\mu)}) > e^{-\mu}
+\]
+\end{proof}
+\textbf{(iii)}
+By considering $X_i^* = 1 (X_i = 0), i = 1, \cdots, 50,$ where $1()$ is the indicator function, find an unbiased estimator and estimate of $g(\mu)$.
+\begin{proof}
+Intuition would say that the proportion of the sample equal to zero, $\frac{1}{50} \sum_{i=1}^{50} X_i^*$, would be a good guess for an unbiased estimator of $g(\mu)$. Calculating,
+\begin{align*}
+E\left[  \frac{1}{50} \sum_{i=1}^{50} X_i^* \right] 
+&= \frac{1}{50} \sum_{i=1}^{50} E[X_i^*] \\
+&= \frac{1}{50} \sum_{i=1}^{50} P (X_i = 0 \sbs \mu)
+\quad \text{since $X_i^*$ is an indicator}  \\
+&= g(\mu)
+\end{align*}
+we see that our guess is indeed unbiased.
+Calculating from the data provided, 
+
+
+<<>>=
+dat2 <- c(3, 4, 4, 3, 6, 0, 2, 4, 4, 3, 3, 5, 2 ,2, 4, 3, 5, 4, 1, 2, 3, 3, 6, 0, 5, 6, 5, 2, 4, 4, 0, 4, 4, 1, 2, 8, 4, 7, 3, 5, 3, 3, 2, 4, 5, 7, 3, 2, 4, 5)
+est <- mean(dat2 == 0)
+est
+@
+
+We get that an unbiased estimate of $g(\mu)$ is \Sexpr{est}
+\end{proof}
+
+\textbf{(iv)}
+Find the distribution of $\pr(X_1 \sbs \bar{X}, \mu)$. (Here, $X_1$ indicates the first measurement as given to you in random order, and is not necessarily the smallest measurement).
+
+\begin{proof}
+Note that since we are dealing with 50 observations, 
+\begin{align*}
+\pr(X_1 \sbs \bar{X} = \bar{x}, \mu) 
+&= 
+\pr (X_1 \sbs \frac{1}{50}\sum_{i=1}^{50} X_i = \frac{1}{50}\sum_{i=1}^{50} x_i, \mu)
+\\
+&=
+\pr (X_1 \sbs \sum_{i=1}^{50} X_i = \sum_{i=1}^{50} x_i, \mu)
+\end{align*}
+Define new random variables
+\begin{equation*}
+S = \sum_{i=1}^{50} X_i \text
+{,\quad and\quad } 
+S_{-1} = \sum_{i=2}^{50} X_i
+\end{equation*}
+Since the $X_i$ are independent, we have $X_1$ and $S_{-1}$ are also independent. Notice that $S_{-1}$ is the sum of forty-nine Poisson$(\mu)$ which is a poisson distribution with parameter $49 \mu$. These two facts give
+\begin{equation*}
+\pr(X_1 = x_1, S_{-1} = s_{-1} \sbs \mu) = 
+\frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s_{-1}}}{s_{-1}!} e^{-49\mu}
+\end{equation*}
+Now we wish to calculate the joint density of $X_1$ and $S$ by the change of variable method (for reference, see pg. 108 of Grimmett and Stirzaker). Let 
+\begin{equation*}
+U = S = S_{-1} + X_1 
+\text{, \quad and \quad } 
+V = X_1
+\end{equation*}
+If follows that $S_{-1} = U - V$. Thus the Jacobian is
+\[
+\begin{vmatrix}
+1 & -1 \\
+0 & 1
+\end{vmatrix}
+=
+1
+\]
+Now the joint density of $X_1$ and $S$ is as follows
+\begin{align*}
+f_{X_1, S} (X_1 = x_1, S = s) 
+&= f_{X_1, S_{-1}} (x_1, s - x_1) | J (x_1, s)| \\
+&= f_{X_1, S_{-1}} (x_1, s - x_1) \\
+&= \frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s - x_1}}{(s-x_1)!} e^{-49\mu}
+\end{align*}
+Hence, by conditional probability,
+\begin{align*}
+\pr(X_1 \sbs \bar{X}, \mu) &= \pr (X_1 \sbs S, \mu) \\ 
+&= \pr(X_1, S \sbs \mu) / \pr(S \sbs \mu) \\
+&= 
+\left(\frac{\mu^{x_1}}{x_1!} e^{-\mu} \frac{(49\mu)^{s - x_1}}{(s-x_1)!} e^{-49\mu} \right)
+/
+\left( \frac{(50\mu)^{s}}{s!} e^{-50\mu} \right) \\
+&= 
+\frac{\mu^{x_1} e^{-50\mu}}{x_1!} \frac{(49\mu)^{s - x_1}}{(s-x_1)!}  
+\frac{(s!)e^{50\mu}}{(50\mu)^{s}}  \\
+&=
+\binom{s}{x_1} 
+\left(\frac{49}{50}\right)^s 
+\left( \frac{1}{49} \right)^{x_1}
+\\
+&=
+\binom{s}{x_1} 
+\left(\frac{49}{50}\right)^{s -x_1}
+\left( \frac{1}{49} \right)^{x_1}
+\left( \frac{49}{50} \right)^{x_1}
+\\
+&=
+\binom{s}{x_1} 
+\left(\frac{49}{50}\right)^{s -x_1}
+\left( \frac{1}{50} \right)^{x_1}
+\end{align*}
+as desired. This is recognized as a binomial distribution with $s$ trials, with $x_1$ successes, and with probability of success $1/50$.
+\end{proof}
+
+\textbf{(v)}
+Use your estimator in (iii), your result in (iv) and ``Blackwellization'' to obtain an unbiased estimator (and estimate) for $g(\mu)$ that has smaller variance than the one in (iii). Is this the minimum unbiased estimator for $g(\mu)$, and why or why not? 
+
+\begin{proof}
+We have an estimate for $g(\mu)$. It is $(1/50)\sum_{i=1}^{50} X_i^*$. In problem (i), we found that $\bar{X}$ is a minimal sufficient statistic for $\mu$. By the Blackwell-Rao Theorem,
+\begin{align*}
+E\left[(1/50)\sum_{i=1}^{50} X_i^* \sbs \bar{X}, \mu \right] 
+&= (1/50) \sum_{i=1}^{50} E[X_i^* | \bar{X}, \mu] \\
+&= (1/50) \sum_{i=1}^{50} \pr(X_i = 0 | \bar{X}, \mu) \\
+&= (1/50) \sum_{i=1}^{50} \pr(X_i = 0 | S=s, \mu) \\
+&= (1/50) \sum_{i=1}^{50} 
+\binom{s}{0} 
+\left(\frac{49}{50}\right)^{s-0} 
+\left( \frac{1}{50} \right)^{0}\\
+&= \left(\frac{49}{50}\right)^s
+\end{align*}
+is the ``Blackwellized'' estimator. Since we conditioned on a minimal sufficient statistic in the Blackwellization process, $\left(\frac{49}{50}\right)^s$ is the minimum variance unbiased estimator for $g(\mu)$.
+
+Calculating, 
+<<>>=
+s <- sum(dat2)
+blac <- (49/50)^s
+blac
+@
+we see that our Blackwellized estimator is \Sexpr{blac}.
+\end{proof}
+\end{document}

@@ -1,0 +1,663 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+\newcommand{\bI}{\mbox{\boldmath $I$}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% X
+\newcommand{\bX}{\mbox{\boldmath $X$}}
+% Y
+\newcommand{\bY}{\mbox{\boldmath $Y$}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{Statistical Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Problem Set 2}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Problems (i) through (v)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+
+Let $Y^{obs}$ 
+denote the vector $(Y_{1},...,Y_{n})$ except that $Y_{i}$ is
+replaced by NA (for ``not available'') 
+if $I_{i}=0$; let $Y^{mis}$ be the missing outcomes; 
+and let $I=(I_{1},...,I_{n})$. Then, the likelihood of the data $(Y^{obs}, I)$ is:
+\begin{equation}
+\label{top}
+\pr(Y^{obs}, I \;|\; \theta, \alpha) 
+= 
+\prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)
+\prod_{i:I_i = 0} \int f(Y_i, \theta)(1 - \pi (Y_i,\alpha))dY_i 
+\end{equation}
+
+
+\textbf{Questions.} Assume that $n$ ``eligible''
+persons are starting their stay to nursing homes in a time window around the present time; 
+assume that our study is actually conducted by visiting a simple random sample of people who \textit{right now} are at nursing homes; 
+assume that $Y_{i}$ is the total length that person $i$ has stayed and will stay at the home; 
+and assume that all those we visited now are followed-up and we
+find out $Y_{i}$ for these people. 
+The latter sample of $Y_{i}$ is only a subset of the ``eligible persons'' and is more likely to include an ``eligible''
+person with a longer than a shorter stay $Y_{i}$. 
+To address this phenomenon, known in Biometry as length bias, assume here that the probability, 
+$\pi (y_{i},\alpha )$, of getting an ``eligible'' $Y_{i}$ in our study sample is $Y_i={Y_{i}}/{\alpha }$,
+where is the maximum length of stay that can occur (i.e., 
+$f(y;\theta )=0$ for $y>\alpha $ ).
+
+
+\begin{enumerate}[(i)]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem i                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Using this model, and \eqref{top} above, write down the likelihood of the data $D_0 = (Y^{obs}, I_1, \cdots, I_n)$ in terms of $f()$ and $\alpha$, simplifying where possible.
+
+\begin{proof}
+From \eqref{top}, we start calculating
+\begin{align}
+\pr(D_0 \sbs \theta, \alpha) &= \pr(Y^{obs}, I \;|\; \theta, \alpha) \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)
+\prod_{i:I_i = 0} \int f(Y_i, \theta)(1 - \pi (Y_i,\alpha))dY_i \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \int f(Y_i, \theta) - \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \label{eq4}\\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \left(\int f(Y_i, \theta) dY_i - \int \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \right) \\
+&= \prod_{i:I_i = 1} f(Y_i,\theta) \frac{Y_i}{ \alpha}
+\prod_{i:I_i = 0} \left(1 - \frac{1}{\alpha} E[Y_i\;|\;\theta] \right) 
+\label{eq6}
+\end{align}
+Equation \eqref{eq4} follows from the preceding one because $\pi(Y_i, \alpha) = Y_i / \alpha$.
+Given that
+\begin{equation}
+\pr(Y_i = y \;|\; \theta) = f(y, \theta)
+\end{equation}
+then the $Y_i$ are equally distributed and have the same expectation. Since $Y_i$ represents a positive time less than $\alpha$, for all $i$
+\begin{equation}
+0 \leq E[Y_i | \theta] = E[Y | \theta] \leq \alpha
+\end{equation}
+If the number of people, $n_1$, with $I_i = 1$ is known, then
+it is possible to write
+\begin{equation}
+\pr(D_0 \sbs \theta, \alpha)
+=
+\alpha^{-n_1}\left(\prod_{i:I_i = 1} f(Y_i,\theta) Y_i\right)
+\left(1 - \frac{E[Y | \theta])}{\alpha} \right)^{n - n_1} \label{eq7}
+\end{equation}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem ii                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+In practice, we do not know the number of ``eligible'' persons, but we know the number of people, $n_1$, with $I_i = 1$ in step 2. 
+Suppose we \textit{observe} $Y_i$ from $n_1 = 500$ people at step 2.
+Write down the likelihood of the data $\{Y_i : i = 1, \cdots, n_1\}$ given $\{I_i = 1 : i = 1, \cdots, n_1\}$ and given $n_1 = 500$. 
+
+\begin{proof}
+Let $Y^{obs}$ denote the data $\{Y_i : i = 1, \cdots, n_1\}$. 
+Let $I$ denote the indicators $\{I_i = 1 : i=1, \cdots, n_1\}$. The likelihood of $Y^{obs}$ can be found by applying \eqref{top} to a dataset with no missing outcomes and using the rules of conditional probability. Calculating,
+\begin{align}
+\pr(Y^{obs} \sbs I, \theta, \alpha) 
+&= 
+\frac{\pr(Y^{obs}, I \sbs \theta, \alpha)}
+{\pr(I \sbs \theta, \alpha)} 
+\\
+&=
+\frac{\prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)}
+{\prod_{i:I_i = 1}\pr(I_i \sbs \theta, \alpha)}
+\label{halfformed}
+%\\
+%&= 
+%\frac{\prod_{i=1}^{500} f(Y_i, \theta) \frac{Y_i}{\alpha}}
+%{\pr(I_i = 1 \sbs \alpha)}
+\end{align}
+The denominator splits up into a product of probabilities by independence.
+From \eqref{eq7} and the calculations leading up to it, it is clear that the numerator is
+\begin{equation}
+\prod_{i:I_i = 1} f(Y_i,\theta) \pi (Y_i, \alpha)
+=
+\alpha^{-n_1}\left(\prod_{i:I_i = 1} f(Y_i,\theta) Y_i\right)
+=
+\alpha^{-500}\left(\prod_{i = 1}^{500} f(Y_i,\theta) Y_i\right)
+\label{numer}
+\end{equation}
+Since for a general density $g(x)$ and joint density $g(x,y)$
+\begin{equation}
+g(x) = \int g(x,y) dy = \int g(x | y) g(y) dy
+\end{equation}
+it follows that
+\begin{align}
+\pr(I_i = 1 \sbs \alpha, \theta) 
+&= \int \pr(I_i = 1 \sbs Y_i, \alpha, \theta) 
+\pr(Y_i \sbs \alpha, \theta) dY_i \\
+&= \int \pi(Y_i, \alpha) f(Y_i, \theta) dY_i \\
+&= \int \frac{Y_i}{\alpha} f(Y_i, \theta) dY_i \\
+&= \alpha^{-1}E[Y_i|\theta]
+\\
+&=\alpha^{-1}E[Y|\theta]
+\label{denom}
+\end{align}
+Substituting \eqref{numer} and \eqref{denom} into \eqref{halfformed}
+we have
+\begin{align}
+\pr(Y^{obs} \sbs I, \theta, \alpha) 
+&= 
+\frac{
+\alpha^{-500}\left(\prod_{i = 1}^{500} f(Y_i,\theta) Y_i\right)
+}
+{\prod_{i=1}^{500}\alpha^{-1}E[Y|\theta]}
+\\
+&=
+E[Y|\theta]^{-500}
+\left(
+\prod_{i=1}^{500}
+f(Y_i,\theta) Y_i
+\right)
+\label{lik}
+\end{align}
+This is the likelihood equation we seek.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem iii                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Assume that, \textit{in the target population} of people who go to nursing homes, 
+the length of stay $Y$ is a Gamma random variable with mean $\theta_1$ and variance $\theta_2$. 
+What is the expectation of $Y_i$ given $I_i = 1$?
+
+\begin{proof}
+To answer this question, let $n_1 = 1$ from problem (ii).
+Let $\theta = (\theta_1, \theta_2)$ be a multivariate parameter upon which the distribution of $Y$ depends.
+Then \eqref{lik} becomes
+\begin{align}
+\pr(Y_i \sbs I_i =1, \theta, \alpha) 
+= 
+E[Y_i|\theta] ^{-1}
+f(Y_i, \theta) Y_i
+\label{gam}
+\end{align}
+So the expectation of \eqref{gam} is 
+\begin{align}
+E[Y_i | I_i = 1, \theta, \alpha] 
+&= 
+\int 
+E[Y_i|\theta] ^{-1}
+f(Y_i, \theta) Y_i^2 
+dY_i 
+\\
+&= E[Y_i|\theta]^{-1} E[Y_i^2|\theta] \\
+&= E[Y_i|\theta]^{-1} (\var(Y_i|\theta) + E[Y_i|\theta]^2) \\
+&= \theta_1^{-1} (\theta_2 + \theta_1^2)\\
+&= \frac{\theta_2}{\theta_1} + \theta_1
+\end{align}
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                    Start Problem iv                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item
+Find a minimal sufficient statistic (possibly a vector) from the likelihood in (iii) for the mean $\theta_1$ and variance $\theta_2$.
+\begin{proof}
+The density of the gamma distribution is
+\begin{align}
+f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha - 1}e^{-\beta x}
+\end{align}
+with mean $\alpha / \beta$ and variance $\alpha / \beta^2$. Since we assume $Y_i$ has a gamma distribution with mean $\theta_1$ and variance $\theta_2$, we can use the substitutions that $\alpha = \theta_1^2 / \theta_2$ and $\beta = \theta_1 / \theta_2$.
+Hence, 
+\begin{align}
+\pr(Y_i |\theta)=
+f(Y_i, \theta) = \frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2 - 1}e^{-Y_i \theta_1/\theta_2}
+\end{align}
+Plugging this in to \eqref{lik}, we have
+\begin{align}
+\pr(Y^{obs} \sbs I, \theta) 
+&=
+E[Y|\theta]^{-500}
+\left(
+\prod_{i=1}^{500}
+f(Y_i,\theta) Y_i
+\right)
+\\
+&=
+\theta_1^{-500}  
+\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2 - 1}e^{-Y_i \theta_1/\theta_2} Y_i
+\\
+&=
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2) \theta_1}
+\right)^{500}
+\exp
+\left\{
+-\theta_1/\theta_2
+\left(
+\sum_{i=1}^{500}
+Y_i
+\right)
+\right\}
+\prod_{i=1}^{500} 
+Y_i^{\theta_1^2 / \theta_2 }
+\end{align}
+From our class slides, chapter 2, a statistic $T()$ is a minimal sufficient statistic for $\theta$ if
+\begin{align}
+T(x) = T(y) \quad \text{if and only if} \quad \frac{\pr(x \sbs \theta)}{\pr(y \sbs \theta)} \quad \text{is free of $\theta$}
+\label{thm}
+\end{align}
+So assume we have another random vector $X^{obs}$ with the same distribution as $Y^{obs}$, then 
+\begin{align}
+\frac{\pr(Y^{obs} \sbs I, \theta)}{\pr(X^{obs} \sbs I, \theta)} 
+&=
+\frac
+{
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2) \theta_1}
+\right)^{500}
+\exp
+\left\{
+-\theta_1/\theta_2
+\left(
+\sum_{i=1}^{500}
+Y_i
+\right)
+\right\}
+\prod_{i=1}^{500} 
+Y_i^{\theta_1^2 / \theta_2 }
+}
+{
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2) \theta_1}
+\right)^{500}
+\exp
+\left\{
+-\theta_1/\theta_2
+\left(
+\sum_{i=1}^{500}
+X_i
+\right)
+\right\}
+\prod_{i=1}^{500} 
+X_i^{\theta_1^2 / \theta_2 }
+}
+\\
+&= \left( 
+\frac{\prod_{i=1}^{500} Y_i}
+{\prod_{i=1}^{500} X_i}
+\right)^{\theta_1^2 /\theta_2} 
+\exp
+\left\{
+-\theta_1 /\theta_2
+\left(
+\sum_{i=1}^{500}Y_i - \sum_{i=1}^{500}X_i
+\right)
+\right\}
+\end{align}
+It is proposed that $T(Y^{obs}) = (\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$. 
+Suppose $T(Y^{obs})= T(X^{obs})$. 
+Then the product of all the observations is the same for $X^{obs}$ and $Y^{obs}$ and the sum of all the observations is the same, too. 
+It follows that 
+\begin{equation}
+\frac{\pr(Y^{obs} \sbs I, \theta)}{\pr(X^{obs} \sbs I, \theta)} = 1
+\end{equation}
+(note the gamma distribution has density equal to $0$ for $X_i = 0$ and $Y_i = 0$).
+To show the contrapositive of the ``if'' direction of
+\eqref{thm},
+suppose 
+that $T(X^{obs}) \neq T(Y^{obs})$. Then
+$\prod_{i=1}^{500} Y_i/ \prod_{i=1}^{500}X_i \neq 1$ or $\sum_{i=1}^{500}Y_i - \sum_{i=1}^{500}X_i \neq 0$, Hence
+$\pr(Y^{obs} \sbs I, \theta)/\pr(X^{obs} \sbs I, \theta)$ is not free of $\theta$. 
+Therefore $T(Y^{obs})=(\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$ is a minimally sufficient statistic.
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                     Start Problem v                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item 
+What would the likelihood in (iii) be and what would be the minimal sufficient statistic if we had mistakenly assumed that $\pi(Y_i, \alpha)$ is not a function of $Y_i$? 
+Would we end up with the same 	inference for $\theta_1$ and $\theta_2$ in that case where we assumed the length-biased $\pi(Y_i, \alpha)$, and why?
+
+\begin{proof}
+Now we assume that $\pi(Y_i, \alpha) = \rho(\alpha)$ some function of $\alpha$ only. Then \eqref{denom} becomes 
+\begin{align}
+\pr(I_i = 1 \sbs \alpha)
+&= \int \pr(I_i = 1 \sbs Y_i, \alpha, \theta)
+\pr(Y_i \sbs \alpha, \theta) dY_i
+\\
+&= \int \pi (y, \alpha) f (Y_i, \theta) dY_i \\
+&= \int \rho(\alpha)  f (Y_i, \theta) dY_i  \\
+&= \rho(\alpha)  \int f (Y_i, \theta) dY_i  \\
+&= \rho(\alpha)
+\end{align}
+Then \eqref{halfformed} becomes
+\begin{align}
+\pr(Y^{obs} \sbs I, \theta, \alpha) 
+&= 
+\frac{\pr(Y^{obs}, I \sbs \theta, \alpha)}
+{\pr(I \sbs \theta, \alpha)}
+\\
+&=
+\frac{\prod_{i:I_i=1} f(Y_i, \theta) \pi(Y_i , \alpha)}
+{\prod_{i:I_i=1}\pr(I_i \sbs \theta, \alpha)}
+\\
+&=
+\prod_{i}^{500} 
+\frac{f(Y_i, \theta) \rho(\alpha)}{\rho(\alpha)} \\
+&= \prod_{i=1}^{500} 
+f(Y_i, \theta)
+\end{align}
+Since in (iii) it is assumed that $Y_i$ follows a gamma distribution, then
+\begin{align}
+\pr(Y^{obs} \sbs I, \theta)
+&=
+\prod_{i=1}^{500} 
+f(Y_i, \theta)
+\\
+&=
+\prod_{i=1}^{500} 
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} Y_i^{\theta_1^2 / \theta_2 - 1}e^{-Y_i \theta_1/\theta_2}
+\\
+&=
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)} 
+\right)^{500}
+\exp
+\left\{
+- \theta_1/\theta_2
+\sum_{i=1}^{500} Y_i
+\right\}
+\prod_{i=1}^{500} 
+Y_i^{\theta_1^2 / \theta_2 - 1}
+\end{align}
+This is the likelihood for (iii) under the new assumption for the missingness mechanism.
+
+To find the minimal sufficient statistic, first assume we have another random vector $X^{obs}$ with the same distribution as $Y^{obs}$, then calculate
+\begin{align}
+\frac{\pr(Y^{obs} \sbs I, \theta)}{\pr(X^{obs} \sbs I, \theta)} 
+&=
+\frac
+{
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2)}
+\right)^{500}
+\exp
+\left\{
+-\theta_1/\theta_2
+\left(
+\sum_{i=1}^{500}
+Y_i
+\right)
+\right\}
+\prod_{i=1}^{500} 
+Y_i^{\theta_1^2 / \theta_2 - 1}
+}
+{
+\left(
+\frac{(\theta_1 / \theta_2)^{\theta_1^2 / \theta_2}}{\Gamma(\theta_1^2 / \theta_2) }
+\right)^{500}
+\exp
+\left\{
+-\theta_1/\theta_2
+\left(
+\sum_{i=1}^{500}
+X_i
+\right)
+\right\}
+\prod_{i=1}^{500} 
+X_i^{\theta_1^2 / \theta_2 - 1}
+}
+\\
+&= \left( 
+\frac{\prod_{i=1}^{500} Y_i}
+{\prod_{i=1}^{500} X_i}
+\right)^{\theta_1^2 /\theta_2 - 1} 
+\exp
+\left\{
+-\theta_1 /\theta_2
+\left(
+\sum_{i=1}^{500}Y_i - \sum_{i=1}^{500}X_i
+\right)
+\right\}
+\end{align}
+
+It is proposed that $T(Y^{obs})=(\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$ is a minimal sufficient statistic.
+
+Suppose $T(Y^{obs})= T(X^{obs})$. 
+Then the product of all the observations is the same for $X^{obs}$ and $Y^{obs}$ and the sum of all the observations is the same, too. 
+It follows that 
+\begin{equation}
+\frac{\pr(Y^{obs} \sbs I, \theta)}{\pr(X^{obs} \sbs I, \theta)} = 1
+\end{equation}
+(note the gamma distribution has density equal to $0$ for $X_i = 0$ and $Y_i = 0$).
+To show the contrapositive of the ``if'' direction of
+\eqref{thm},
+suppose 
+that $T(X^{obs}) \neq T(Y^{obs})$. Then
+$\prod_{i=1}^{500} Y_i/ \prod_{i=1}^{500}X_i \neq 1$ or $\sum_{i=1}^{500}Y_i - \sum_{i=1}^{500}X_i \neq 0$, Hence
+$\pr(Y^{obs} \sbs I, \theta)/\pr(X^{obs} \sbs I, \theta)$ is not free of $\theta$. 
+Therefore $T(Y^{obs})=(\prod_{i=1}^{500} Y_i, \sum_{i=1}^{500}Y_i)$ is a minimally sufficient statistic.
+
+The inference is not the same in this situation as under the assumption of the length-based $\pi(Y_i,\alpha)$. Suppose the censoring mechanism is not a function of $Y_i$ as in the assumptions of problem (v). Then since
+\begin{equation}
+\pr(Y^{obs}\sbs I, \theta, \alpha) = \prod_{i=1}^{500} 
+f(Y_i, \theta)
+=
+\prod_{i=1}^{500} 
+\pr(Y_i \sbs \theta)
+\end{equation}
+it follows that
+\begin{equation}
+\bar{Y_n} = \frac{1}{n} \sum_{i=1}^n Y_i \to \theta_1
+\end{equation}
+by the law of large numbers. Since inference is usually an interval centered about a consistent estimator, under this assumption, the inference would be centered around $\bar{Y}_n$.
+On the other hand, if a length-based $\pi(Y_i,\alpha)$ is assumed, 
+\begin{equation}
+\frac{1}{n} \sum_{i=1}^n Y_i \to \frac{\theta_2}{\theta_1} +\theta_1
+\end{equation}
+as calculated in (iii). Therefore, an interval centered about a consistent estimator for $\theta_1$ would not be centered around $\bar{Y}_n$ since $\theta_2/\theta_1 > 0$. Qualitatively, the inference would be for smaller values than under the assumption of problem (v)
+
+As for $\theta_2$, the variance of the $Y_i$, the inference would be different as well. Suppose the censoring mechanism is not a function of $Y_i$ as in the assumptions of problem (v). Then since 
+\begin{equation}
+\pr(Y^{obs}\sbs I, \theta, \alpha) = \prod_{i=1}^{500} 
+f(Y_i, \theta)
+=
+\prod_{i=1}^{500} 
+\pr(Y_i \sbs \theta)
+\end{equation}
+the sample would appear to be representative of the underlying distribution of the $Y_i$. The variance of the sample would approximate the variance of the underlying Gamma distribution ($\theta_2$). However, if there is a length-based $\pi(Y_i, \alpha)$, then the sample would be more heavily censored on the smaller values of $Y_i$. The variance of the sample would be less than the variance of the distribution of the $Y_i$ because of the missing values. Therefore, inference under this assumption, given the same $Y^{obs}$ would be for larger values than under the assumption of problem (v). 
+%Then (18) with (38) become the new (22)
+%\begin{align}
+%E[Y_i \sbs I_i = 1, \alpha] 
+%&= \int Y_i f(Y_i) dY_i \\
+%&= E[Y_i] \\
+%&= \theta_1
+%\end{align}
+\end{proof}
+\end{enumerate}
+\end{document}
