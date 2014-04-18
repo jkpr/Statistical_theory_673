@@ -1,0 +1,1011 @@
+% /**
+%  * A template for homework files in math classes. The 
+%  * packages and newcommands are a good starting point.
+%  *
+%  * Author: James K. Pringle
+%  * E-mail: jameskpringle@gmail.com
+%  * Last Changed: 26 February 2013
+%  *
+%  * "LaTeX countains the increasing union of MS Word"
+%  */
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                        PAGE SETUP                       %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[letterpaper, 12pt]{article}
+
+% 1in margins all the way around
+\usepackage[margin=1in]{geometry}
+
+% Sets \parindent to 0 and \parskip to stretchable.
+\usepackage{parskip}
+% Use for bigger spaces between paragraphs.
+%\parskip=1.5\baselineskip
+
+% Set headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+% Header
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\mathclass}}
+\chead{\textsc{\today}}
+\rhead{\textsc{\mynamehdr}}
+% Footer
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+% Make the space between lines slightly more generous 
+% than normal single spacing, but compensate so that the 
+% spacing between rows of matrices still looks normal.  
+% Note that 1.1=1/.9090909...
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{.91}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      USEFUL PACKAGES                    %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The classic three
+\usepackage{amsmath,amsthm,amssymb}
+
+% Define \newtheorem for use
+% No numbers, labeled 'Theorem'
+\newtheorem*{nthm}{Theorem}
+
+% Not sure what this is for
+\usepackage{amsfonts}
+
+% Fancy script font
+\usepackage{mathrsfs}
+
+% Makes enumerate environment much easier to customize
+% by specifying the counter
+\usepackage{enumerate}
+
+% Color
+\usepackage{color}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% URL links
+\usepackage{hyperref}
+
+% For inserting graphics and images
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                   USER-DEFINED COMMANDS                 %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make a hyperlink with colored text
+\newcommand{\hrefcolor}[3]{\href{#1}{\textcolor{#3}{#2}}}
+
+% Make a hyperlink with gray text
+\newcommand{\hrefgray}[2]{\hrefcolor{#1}{#2}{Gray}}
+
+% Make the header for the first page
+\newcommand{\firstpageinfo}{
+\textsf{
+\begin{flushleft}
+\sc \myname \\
+\normalfont \mathclass \\
+\professorname \\
+\assignmentnumber \\
+\thedate
+\end{flushleft}
+} \bigskip
+}
+
+% Make problem list for "title" of page
+\newcommand{\problemlist}{ 
+\begin{center}
+\textbf{\Large \textsf{\assignmentnumber}}\\
+\textit{\textsf{\problemset}}
+\end{center}
+\bigskip
+}
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%               LETTERS, FUNCTIONS, AND TEXT              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% A
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\sA}{\mathscr{A}}
+\renewcommand{\aa}{\;\text{a.a.}}
+\renewcommand{\ae}{\;\text{a.e.}}
+% B
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\cB}{\mathcal{B}}
+% C
+\newcommand{\cC}{\mathcal{C}}
+% E
+\newcommand{\E}{\mathbb{E}}
+% F
+\newcommand{\sF}{\mathscr{F}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\Ft}{F^\sim}
+% G
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\sG}{\mathscr{G}}
+% I
+\newcommand{\io}{\;\text{i.o.}}
+% N
+\newcommand{\N}{\mathbb{N}}
+% P
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\sP}{\mathscr{P}}
+\newcommand{\pr}{\text{pr}}
+% Q
+\newcommand{\Q}{\mathbb{Q}}
+% R
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cR}{\mathcal{R}}
+% S
+\newcommand{\cS}{\mathcal{S}}
+% U
+\newcommand{\cU}{\mathcal{U}}
+% V
+\newcommand{\var}{\text{var}}
+% Z
+\newcommand{\Z}{\mathbb{Z}}
+% Punctuation
+\newcommand{\sbs}{\;|\;} % space bar space
+% Math
+\newcommand{\sion}{\sum_{i=1}^n}
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%                                                         %
+%            CHANGE THESE BASED ON THE PAPER              %
+%                                                         %
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+
+% Constants for fancy header and first page info
+\newcommand{\mynamehdr}{\hrefgray{http://biostat.jhsph.edu/~jpringle/}{\myname}}
+\newcommand{\mathclass}{140.673 Theory}
+\newcommand{\myname}{James K. Pringle}
+\newcommand{\professorname}{Dr. Constantine Frangakis}
+\newcommand{\assignmentnumber}{Assignment 5}
+\newcommand{\thedate}{\today}
+\newcommand{\problemset}{Asymptotic normality of the sample median and the delta method}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                         %
+%                      BEGIN DOCUMENT                     %
+%                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Take header off of first page
+\thispagestyle{empty}
+
+% Put in first page info (top of page)
+\firstpageinfo
+
+% Put in title for the paper
+\problemlist
+\section*{Problem 1}
+For $X_{i}$, $i=1,...,n,...$ i.i.d. Bernoulli
+trials with probability $\Pr (X_{i}=1\mid \theta )=\theta $, ($\theta \in
+(0,1)$), show that the large sample distribution of $\arcsin \sqrt{\hat{%
+\theta}}$, where $\hat{\theta}$ is the MLE of $\theta $, has variance that
+is free of $\theta $ (such a transformation of $\hat{\theta}$ is called
+variance-stabilizing transformation).
+
+\noindent Notes: (i) By large sample distribution of $g(\hat{\theta})$ here
+we really mean the approximation obtained from finding the asymptotic
+distribution of $\sqrt{n}(g(\hat{\theta})-g(\theta ))$; (ii) $\alpha
+=\arcsin \sqrt{\theta }$ means that $\sin (\alpha )=\sqrt{\theta }$; (iii) $%
+\frac{d}{d\theta }\arcsin \sqrt{\theta }=\frac{1}{2\sqrt{\theta (1-\theta )}}$
+
+\begin{proof}
+The likelihood function is equal to
+
+\begin{equation*}
+L_{n}(\underline{X}; \theta)
+=
+\prod\limits_{i=1}^{n}
+\theta ^{x_{i}}(1-\theta
+)^{1-x_{i}}
+=
+\theta ^{n\overline{x}}(1-\theta )^{n-n\overline{x}}
+\end{equation*}
+
+Where $\overline{x}=\frac{1}{n}\sum\limits_{i=1}^{n}x_{i}$
+
+Define 
+\begin{equation*}
+\ell_{n}(\underline{X}; \theta)
+=\log 
+L_{n}(\underline{X}; \theta)
+=n\overline{x}\log (\theta )+(n-n\overline{x})\log (1-\theta )
+\end{equation*}
+Then
+\begin{equation*}
+\frac{\partial \ell_{n}(\underline{X}; \theta)}{\partial \theta }=\frac{n%
+\overline{x}}{\theta }-\frac{n-n\overline{x}}{1-\theta }
+\end{equation*}
+
+Solving for $\hat{\theta}$ that sets the derivative equal to 0,
+
+\begin{align*}
+\frac{n\overline{x}}{\hat{\theta} }-\frac{n-n\overline{x}}{1-\hat{\theta} } &=0 \\
+\frac{n\overline{x}}{\hat{\theta} } &=\frac{n-n\overline{x}}{1-\hat{\theta} } \\
+\frac{\overline{x}}{\hat{\theta}} &=\frac{1-\overline{x}}{1-\hat{\theta} } \\
+\overline{x}(1-\hat{\theta} ) &=(1-\overline{x})\hat{\theta} \\
+\overline{x} &=\hat{\theta}
+\end{align*}
+
+Notice that the second derivative is negative for all values of $\theta$, hence $\hat{\theta}$ is a maximum.
+We conclude that
+\begin{equation*}
+\hat{\theta }=\overline{X}=\frac{1}{n}\sum\limits_{i=1}^{n}X_{i}
+\end{equation*}
+is the MLE. By the Central Limit Theorem, it follows that
+\begin{equation*}
+\sqrt{n}\left( \hat{\theta }-\theta \right) \overset{D}{\rightarrow }N(0,\theta (1-\theta))
+\end{equation*}
+Now, define the function and its derivative
+\begin{align*}
+g(t) &=\arcsin \sqrt{t} \\
+\frac{dg(t)}{dt} &=\frac{1}{2\sqrt{t(1-t)}}
+\end{align*}
+Then by the Delta Method, we know that 
+\begin{align*}
+\sqrt{n}
+\left( 
+g(\hat{\theta})-g
+\left(\theta \right)
+\right) 
+&
+\overset{D}{\rightarrow }
+N
+\left(
+0,
+\left( 
+\frac{1}{2\sqrt{\theta (1-\theta )}}
+\right)^{2}
+\theta
+(1-\theta)\right) \\
+\sqrt{n}\left(
+g(\hat{\theta })-g\left(\theta \right)
+\right) 
+&\overset{D}{\rightarrow }
+N\left(0,\frac{1}{4}\right)
+\end{align*}
+Therefore the asymptotic variance of is free of $\theta$, as desired.
+\end{proof}
+
+\section*{Problem 2} 
+Suppose that we are interested in the true median $m_0$ of the distribution of life times from a population of cells.
+Assume the distribution is absolutely continuous and that we are about to measure $X_1,\cdots,X_n$ iid measurements from that distribution. 
+Here, we do not want to believe necessarily on a finite parametric likelihood model for $X_i$, and so we will estimate $m_0$ with the median, say $M_n$, of the $n$ observations (you can assume $n$ is odd). 
+
+We wish to derive the large sample distribution of
+￼￼￼$\sqrt{n}(M_n - m_0)$. 
+To do so, you need to assume that a more
+general version of the central limit theorem (CLT) holds here. 
+Assuming that version of CLT holds, show that the large sample distribution of ￼￼￼$\sqrt{n}(M_n - m_0)$ is normal with mean $0$ and variance $1/(4f^2(m_0))$, where $f()$ is the true density of the distribution. 
+State what is that version of CLT you need.
+
+Hint: Express the cumulative probability $\pr(M_n < t)$ as a probability of the event that a certain binomial random variable is at a tail. Then, state what approximations to that event are needed to arrive at the result.
+
+\begin{proof}
+Note that $M_n = X_{(\frac{n+1}{2})}$, the $(n+1)/2$-th order statistic for the sample of size $n$ (assumed odd). To find the distribution of ￼￼￼$\sqrt{n}(M_n - m_0)$, we calculate for some $a \in \R$,
+\begin{align*}
+\pr(￼￼￼\sqrt{n}(M_n - m_0) \leq a)
+&=
+\pr\left(M_n \leq  \frac{a}{\sqrt{n}} + m_0\right)
+\end{align*}
+We seek to apply the Central Limit Theorem for Triangular Arrays (see Chung 7.1). Considering row $n$, define 
+\[
+Y_{ni} = I_{\left\{X_i \leq \frac{a}{\sqrt{n}} + m_0\right\}}.
+\] 
+Thus, for fixed $n$, the $Y_{ni}$ are iid with distribution $Bernoulli(p_n)$, where $p_n =F(\frac{a}{\sqrt{n}} + m_0)$ and $F(\cdot)$ is the distribution of the $X_i$. Since the entries of each row must satisfy certain normalization properties, let entry $i$ of row $n$, where $i \in \{1, \cdots, n\}$, be
+\[
+Z_{ni} = \frac{Y_{ni} - E[Y_{ni}]}{\sqrt{n\cdot\var(Y_{ni})}} = \frac{Y_{ni} - p_n}{\sqrt{np_n(1-p_n)}}
+\]
+Define $S_n = \sion Z_{ni}$. Therefore $E[Z_{ni}] = 0$ and 
+\[
+\var(S_n) = \var\left(\sion Z_{ni}\right) = \sion \var(Z_{ni}) =
+\sion \frac{\var(Y_{ni})}{n\cdot\var(Y_{ni})} = 1
+\]
+by indepdence. Examining the third moments,
+\begin{align*}
+\gamma_{ni} &= E[|Z_{ni}|^3] \\
+&= (n\cdot \var(Y_{ni}))^{-3/2} E[|Y_{ni} - E[Y_{ni}]|^3]
+\\
+&\leq
+(n\cdot \var(Y_{ni}))^{-3/2}.
+\end{align*}
+The sum of these absolute third moments is
+\[
+0 \leq
+\Gamma_n = \sion \gamma_{ni} \leq n (n\cdot \var(Y_{ni}))^{-3/2} 
+= \frac{1}{\sqrt{n}} \left( \frac{1}{\var(Y_{ni})} \right)^{3/2}.
+\]
+Calculating,
+\begin{align*}
+\lim_{n \to \infty} \var(Y_{ni}) &= \lim_{n \to \infty} p_n (1- p_n) \\
+&= \lim_{n \to \infty}
+F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1 - F\left(\frac{a}{\sqrt{n}} + m_0\right)\right)
+\\ 
+&= F\left(\lim_{n \to \infty} \frac{a}{\sqrt{n}} + m_0\right)\left(1 -F\left(\lim_{n \to \infty} \frac{a}{\sqrt{n}} + m_0\right) \right)
+\quad (*)
+\\
+&=
+F(m_0)(1-F(m_0))\\
+&= \frac{1}{2} \left(1 - \frac{1}{2}\right) \\
+&= \frac{1}{4}
+\end{align*}
+where $(*)$ follows from continuity because $F(1-F)$ is a composition of continuous functions (since $F$ is absolutely continuous by assumption). Again, by composition of continuous functions
+\[
+\lim_{n\to\infty} 
+\left( \frac{1}{\var(Y_{ni})} \right)^{3/2}
+=
+8
+\]
+
+Therefore, 
+\[
+0 \leq \lim_{n \to \infty} \Gamma_n \leq \lim_{n \to \infty} \frac{1}{\sqrt{n}} \left( \frac{1}{\var(Y_{ni})} \right)^{3/2} = 0
+\]
+and we see $\Gamma_n \to 0$. Hence, by Chung Theorem 7.1.2, $S_n$ converges in distribution to $\Phi$, the distribution of a standard normal random variable.
+
+Note that the sample median of $n$ (odd) $X_i$'s is less than a number if and only if $(n+1)/2$ or more of the $X_i$'s are less than that number. Hence
+\begin{align*}
+\pr\left(M_n \leq  \frac{a}{\sqrt{n}} + m_0\right)
+&=
+\pr\left(
+\sion Y_{ni} \geq \frac{n+1}{2}
+\right) 
+\\
+&=
+\pr\left(\sion \frac{Y_{ni} - p_n}{\sqrt{n p_n(1-p_n)}} 
+\geq
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+\right)
+\\
+&=
+\pr\left(
+S_n \geq \frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+\right)
+\end{align*}
+Since $S_n$ converges in distribution to $\Phi$, for all $b \in \R$
+\[
+\lim_{n \to \infty} \pr\left(
+S_n \geq b
+\right)
+=
+1 - \Phi(b)
+\]
+Furthermore, by Chung 7.4.1, there is a universal constant $A_0$ such that
+\[
+\sup_x |F_n(x) - \Phi(x)| \leq A_0 \Gamma_n
+\]
+where $F_n$ is the distribution function of $S_n$. Taking the limit,
+\begin{align*}
+0 
+\leq 
+\lim_{n \to \infty} 
+\sup_x |F_n(x) - \Phi(x)| 
+\leq 
+\lim_{n \to \infty}
+A_0 \Gamma_n = 0
+\end{align*}
+By squeezing, $\sup_x |F_n(x) - \Phi(x)|  \to 0$. 
+This implies that 
+\[
+\sup_x |\mu_n([x, \infty)) - (1-\Phi(x))| \to 0
+\]
+where $\mu_n$ is the measure induced by $F_n$. Therefore,
+\begin{equation}
+\left|
+\pr
+\left(
+S_n 
+\geq 
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+\right)
+-
+\left(1 - \Phi
+\left(
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+\right)
+\right)
+\right|
+\leq 
+\sup_x |\mu_n([x, \infty)) - (1-\Phi(x))|.
+\label{empz}
+\end{equation}
+Since the right-hand side tends to 0, the left-hand side also tends to 0. 
+
+Next we find the limit of 
+\[
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}.
+\]
+We assume that the distribution function is differentiable in a neighborhood of $m_0$. Then by the Mean Value Theorem,
+\[
+F
+\left(\frac{a}{\sqrt{n}} + m_0\right)
+=
+F(m_0) + f(m^*) \left( 
+\frac{a}{\sqrt{n}} + m_0 - m_0
+\right)
+=
+\frac{1}{2} + f(m^*)\left(
+\frac{a}{\sqrt{n}} 
+\right)
+\]
+where $m_0 \leq m^* \leq m + \frac{a}{\sqrt{n}}$.
+Therefore,
+\begin{align*}
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+&=
+\frac{\frac{n+1}{2} - n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)}{\sqrt{n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+\\
+&=
+\frac{\frac{n}{2} +\frac{1}{2} - n \left( \frac{1}{2} + f(m^*)\left(
+\frac{a}{\sqrt{n}} 
+\right)\right)}{\sqrt{n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+\\
+&=
+\frac{\frac{1}{2}}{\sqrt{n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+-
+\frac{ f(m^*)a \sqrt{n}}{\sqrt{n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+\\
+&=
+\frac{1}{\sqrt{4n F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+-
+\frac{ f(m^*)a}{\sqrt{F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\left(1-F
+\left(\frac{a}{\sqrt{n}} + m_0\right)\right)}}
+\end{align*}
+By the argument from before about the continuity of $F(1 - F)$, we have 
+\[
+\lim_{n \to \infty} 
+\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+=
+0 - \frac{f(m_0)a}{\sqrt{\frac{1}{4}}}
+=
+-2f(m_0)a
+\]
+since by squeezing, $\lim_{n \to \infty} f(m^*) = f(m_0)$.
+
+It follows by the continuity of $\Phi$ that
+\begin{equation}
+\lim_{n \to \infty}
+\Phi\left(\frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}\right)
+=
+\Phi(-2f(m_0)a)
+=
+1 - \Phi(2f(m_0)a)
+\label{phicont}
+\end{equation}
+
+Now for simplicity, let
+\[
+h_n = \frac{\frac{n+1}{2} - n p_n}{\sqrt{n p_n(1-p_n)}}
+\]
+Then calculating,
+\begin{align*}
+|\pr(S_n \geq h_n) - \Phi(2f(m_0)a)|
+&=
+|\pr(S_n \geq h_n) - (1-\Phi(-2f(m_0)a))|
+\\
+&=
+|\pr(S_n \geq h_n) - (1 - \Phi(h_n)) + (1 -\Phi(h_n)) - (1-\Phi(-2f(m_0)a))|
+\\
+&\leq
+|\pr(S_n \geq h_n) - (1 - \Phi(h_n))|
++
+|(1 -\Phi(h_n)) - (1-\Phi(-2f(m_0)a))|
+\\
+&=
+|\pr(S_n \geq h_n) - (1 - \Phi(h_n))|
++
+|-\Phi(h_n) + \Phi(-2f(m_0)a))|
+\end{align*}
+by the triangle inequality. Since both terms in the absolute value signs tend to zero, as shown above at \eqref{empz} and \eqref{phicont}, we have that
+\[
+\lim_{n \to \infty}
+|\pr(S_n \geq h_n) - \Phi(2f(m_0)a)|
+=
+0
+\]
+Since $\pr(S_n \geq h_n) = \pr(￼￼￼\sqrt{n}(M_n - m_0) \leq a)$ it follows that for all $a \in \R$
+\[
+\pr(￼￼￼\sqrt{n}(M_n - m_0) \leq a) \to \Phi(2f(m_0)a) = \pr\left(\frac{Z}{2f(m_0)} \leq a\right)
+\]
+where $Z$ is a standard normal random variable.
+This means that 
+\[
+￼￼￼\sqrt{n}(M_n - m_0) \sim N\left(0, \frac{1}{4f^2(m_0)}\right)
+\]
+\end{proof}
+
+
+\section*{Problem 3}
+\textit{Apnea} is a condition with which a person cannot breathe normally during sleep. To estimate the prevalence of apnea in children, we conduct the following study.
+First, we obtain a simple random sample of $n = 5000$ children from all children, and, among the $5000$ children, we find out that $N_s = 212$ children snore. Assume a child who does not snore cannot have apnea, so we focus on those who snore. 
+Among those who do snore, we cannot follow all children, so we follow a subset $N_f =80$ that we get as a simple random sample from the $N_s$ children. We then study in detail the night sleep pattern of the $N_f$ children and find that $N_a = 60$ of them have apnea.
+Treat the original sample size $n$ as known (and fixed unless told otherwise), and the other observed data $N = (N_s, N_f , N_a)$ as realizations of random variables. 
+Denote by $\theta$ all known or unknown parameters in the problem, and, based on the above design, assume the following:
+\begin{enumerate}[(1)]
+\item
+$\pr(N_s | n, \theta)$ is a Binomial$(n, \pi_s)$ distribution, where $\pi_s$ is the probability that a child snores.
+\item
+$\pr(N_f | N_s, \theta)$ is a Binomial$(N_s, \pi_f)$ distribution, where $\pi_f$ is the probability of a child being followed
+further for detailed study, given that the child snored.
+\item
+$\pr(N_a | N_f, N_s, \theta) = \pr(N_a | N_f, \theta)$ is a Binomial$ (N_f, \pi_a)$ distribution, where $\pi_a$ is the probability of a child having apnea given that the child was followed for detailed study.
+\end{enumerate}
+Address the following
+\begin{enumerate}[(i)]
+\item
+Show that the likelihood of the data, $L(\theta, \underline{N})$ is
+\[
+\pi_s^{N_s}(1-\pi_s)^{(n-N_s)}\times \pi_f^{N_f} (1-\pi_f)^{(N_s-N_f)}\times\pi_a^{N_a}(1-\pi_a)^{(N_f-N_a)}.
+\]
+\begin{proof}
+Define 
+\[
+Y_{i}^{s}
+=
+\begin{cases}
+1&\text{ if person $i$ snores} \\ 
+0&\text{ otherwise,}
+\end{cases}
+\]
+define
+\[
+Y_{i}^{f}=
+\begin{cases}
+1&\text{ if person $i$ is selected for the study} \\ 
+0&\text{ otherwise,}
+\end{cases}
+\]
+and define
+\[
+Y_{i}^{a}=
+\begin{cases}
+1&\text{ if person $i$ has apnea} \\ 
+0&\text{ otherwise.}
+\end{cases}
+\]
+Then 
+\begin{align*}
+Y_{i}^{s} &\sim Bernoulli (\pi_s)
+\\
+Y_{i}^{f} \mid Y_{i}^{s} &\sim Bernoulli (\pi_f)
+\\
+Y_{i}^{a} \mid Y_{i}^{f}, Y_{i}^{s} &\sim Bernoulli (\pi_a)
+\end{align*}
+Therefore, 
+\begin{align*}
+L(\theta |\underline{N}) 
+&=
+\Pr (\underline{Y^{a}}|\theta ,\underline{Y^{f}},
+\underline{Y^{s}})\Pr (\underline{Y^{f}}|\theta ,\underline{Y^{s}})\Pr (\underline{Y^{s}%
+}|\theta ) 
+\\
+L(\theta |\underline{N}) 
+&=
+\prod\limits_{i=1}^{N_{f}}\pi
+_{a}^{Y_{i}^{a}}(1-\pi _{a})^{1-Y_{i}^{a}}\prod\limits_{k=1}^{N_{s}}\pi
+_{f}^{Y_{i}^{f}}(1-\pi _{f})^{1-Y_{i}^{f}}\prod\limits_{j=1}^{n}\pi
+_{s}^{Y_{j}^{s}}(1-\pi _{s})^{1-Y_{i}^{s}} 
+\\
+&=\left[ \pi _{a}^{N_{a}}(1-\pi _{a})^{N_{f}-N_{a}}\right] \pi
+_{f}^{N_{f}}(1-\pi _{f})^{N_{s}-N_{f}}\left[ \pi _{s}^{N_{s}}(1-\pi
+_{s})^{n-N_{s}}\right] 
+\end{align*}
+as desired.
+\end{proof}
+\item
+Find the scores for $\pi_s$ and $\pi_a$, say $S_s$ and $S_a$, respectively. Hence, find the maximum likelihood estimators for $\pi_s$ and $\pi_a$, assuming the study's researchers tell you $\pi_f$. Would the MLEs for $\pi_s$ and $\pi_a$ change if you did not know $\pi_f$? In the remaining part of the problem, continue to assume you know $\pi_f$.
+\begin{proof}
+Define
+\[
+\ell(\theta, \underline{N})
+=
+\log L(\theta, \underline{N})
+=
+C + N_s \log (\pi_s) + (n - N_s)\log(1 - \pi_s) + N_a \log(\pi_a) + (N_f - N_a)\log(1- \pi_a)  
+\]
+where $C = N_f \log (\pi_f) + (N_s - N_f)\log(1-\pi_f)$, which does not depend on $\pi_s$ or $\pi_a$.
+Thus,
+\begin{align*}
+\frac{\partial \ell(\theta, \underline{N})}{\partial \pi_s}
+&=
+\frac{N_s}{\pi_s} - \frac{n - N_s}{1-\pi_s}
+\\
+\frac{\partial \ell(\theta, \underline{N})}{\partial \pi_a}
+&=
+\frac{N_a}{\pi_a} - \frac{N_f - N_a}{1-\pi_a}
+\end{align*} 
+which implies that the MLEs are the values that set the scores equal to 0, i.e.
+\begin{align*}
+\hat{\pi_s} &= \frac{N_s}{n} \\
+\hat{\pi_a} &= \frac{N_a}{N_f}
+\end{align*}
+It is easy to see that second derivatives of the scores are negative, so $\hat{\pi_s}$ and $\hat{\pi_a}$ maximize the likelihood function. Since the scores $S_s$ and $S_a$ do not depend on $\pi_f$, the MLEs would not change if we did not know $\pi_f$.
+\end{proof}
+\item
+Find the unconditional expectations $E(N_s |\theta)$, $E(N_f | \theta)$, and $E(N_a | \theta)$ [Hint: for the latter two, use conditional expectations first].
+\begin{proof}
+By assumption (1),
+\[
+E(N_s |\theta) = n\pi_s
+\]
+By assumption (2),
+\[
+E(N_f | N_s, \theta) = N_s \pi_f,
+\]
+so by iterated expectation,
+\[
+E(N_f | \theta) 
+= 
+E(E(N_f | N_s, \theta) | \theta)
+=
+E(N_s \pi_f | \theta)
+=
+\pi_f
+E(N_s | \theta)
+=
+n \pi_s \pi_f
+\]
+By assumption (3),
+\[
+E(N_a | N_f, N_s, \theta) = N_f \pi_a
+\]
+so by iterated expectation,
+\begin{align*}
+E(N_a | \theta) 
+&= E(E(E(N_a | N_f, N_s, \theta) | N_s, \theta) | \theta)
+\\
+&=
+E(E(N_f \pi_a | N_s, \theta) | \theta)
+\\
+&=
+E( N_s \pi_f \pi_a | \theta)
+\\
+&=
+n \pi_s \pi_f \pi_a
+\end{align*}
+\end{proof}
+\item
+Find the three second-order derivatives of the log-likelihood with respect to $(\pi_s,\pi_a)$. 
+Hence, as $n$ increases, find the large sample joint distribution of the vector $[\sqrt{n}(\hat{\pi}_a - \pi_s), \sqrt{n}(\hat{\pi}_a - \pi_a)]$, over hypothetical replications of the study. [Note: the shape of the large sample distribution is, theoretically, in terms of the parameters $\pi_s$, $\pi_f$, and $\pi_a$ only, not in terms of the data.]
+\begin{proof}
+Calculating,
+\begin{align*}
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_s^2}
+&=
+-\frac{N_s}{\pi_s^2} - \frac{n - N_s}{(1-\pi_s)^2}
+\\
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_a^2}
+&=
+-\frac{N_a}{\pi_a^2} - \frac{N_f - N_a}{(1-\pi_a)^2}
+\\
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_a \partial \pi_s} &=\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_s \partial \pi_a}  = 0
+\end{align*}
+The information based on $n$ data points is
+\begin{align*}
+I_n(\theta) 
+&=
+-
+E
+\begin{bmatrix}
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_s^2}
+&
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_a \partial \pi_s}
+\\
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_s \partial \pi_a}
+&
+\frac{\partial^2 \ell(\theta, \underline{N})}{\partial \pi_a^2}
+\end{bmatrix}
+\\
+&=
+-E
+\begin{bmatrix}
+-\frac{N_s}{\pi_s^2} - \frac{n - N_s}{(1-\pi_s)^2}
+&
+0
+\\
+0
+&
+-\frac{N_a}{\pi_a^2} - \frac{N_f - N_a}{(1-\pi_a)^2}
+\end{bmatrix}
+\\
+&=
+\begin{bmatrix}
+\frac{n\pi_s}{\pi_s^2} + \frac{n - n\pi_s}{(1-\pi_s)^2}
+&
+0
+\\
+0
+&
+\frac{n \pi_s\pi_f\pi_a}{\pi_a^2} + \frac{n\pi_s\pi_f - n \pi_s\pi_f\pi_a}{(1-\pi_a)^2}
+\end{bmatrix}
+\\
+&
+=
+\begin{bmatrix}
+\frac{n}{\pi_s} + \frac{n}{(1-\pi_s)}
+&
+0
+\\
+0
+&
+\frac{n \pi_s\pi_f}{\pi_a} + \frac{n\pi_s\pi_f}{(1-\pi_a)}
+\end{bmatrix}
+\\
+&=
+\begin{bmatrix}
+\frac{n}{\pi_s(1-\pi_s)}
+&
+0
+\\
+0
+&
+\frac{n \pi_s\pi_f}{\pi_a(1-\pi_a)}
+\end{bmatrix}
+\end{align*}
+So the information based on one data point is
+\[
+I_1(\theta)
+=
+I_n(\theta)/n
+=
+\begin{bmatrix}
+\frac{1}{\pi_s(1-\pi_s)}
+&
+0
+\\
+0
+&
+\frac{ \pi_s\pi_f}{\pi_a(1-\pi_a)}
+\end{bmatrix}
+\]
+Thus,
+\[
+\sqrt{n}
+\begin{bmatrix}
+\hat{\pi}_a - \pi_s \\
+\hat{\pi}_a - \pi_a
+\end{bmatrix}
+\xrightarrow{D}
+N(0, I_1(\theta)^{-1})
+=
+N
+\left(
+\begin{bmatrix}
+0\\0
+\end{bmatrix}, 
+\begin{bmatrix}
+{\pi_s(1-\pi_s)}
+&
+0
+\\
+0
+&
+\frac{\pi_a(1-\pi_a)}{ \pi_s\pi_f}
+\end{bmatrix}
+\right)
+\]
+\end{proof}
+\item
+Explain in no more than two sentences why, with the above design, the prevalence of apnea, say $p_a$, in the population, equals $\pi_s \pi_a$. Hence report the MLE of $p_a$ using your data.
+\begin{proof}
+The prevalence of apnea is the number of people with apnea divided by the total population in consideration. That is equal to the number of snorers divided by the total population ($\pi_s$) times the number of people with apnea divided by the number of snorers ($\pi_a$).
+
+Alternatively, a description in math terms is
+\begin{align*}
+p_a &= P(Apnea | Snores) P(Snores) + P(Apnea | Snores^c)P(Snores^c)
+\\
+&=
+\pi_a \pi_s + 0(1-\pi_s)
+\\
+&=
+\pi_a \pi_s
+\end{align*}
+
+By the invariance property of the MLE, the MLE for $p_a$ is
+\[
+\hat{p_a} = \hat{\pi_s} \hat{\pi_a} = (N_s N_a)/(n N_f).
+\] 
+\end{proof}
+\item
+By approximating, as $n$ increases, the large sample distribution of
+\[
+\sqrt{n} \{
+\text{logit}(\hat{\pi}_s\hat{\pi}_a)
+-
+\text{logit}(\pi_s\pi_a)
+\},
+\]
+using the delta method (Taylor's expansion), report, using your data, an approximate 95\% CI for the prevalence of apnea $p_a$. [the function logit means: logit$(x) = \log(x/(1-x))$.]
+\begin{proof}
+Let $g(x,y) = \log(xy/(1-xy))$. Then
+\begin{align*}
+\frac{\partial g}{\partial x} 
+&= 
+\left(y \frac{1}{1-xy} + xy \frac{y}{(1-xy)^2}\right)
+\frac{1-xy}{xy}\\
+&= 
+\left(
+\frac{y - xy^2}{(1-xy)^2} + \frac{xy^2}{(1-xy)^2}
+\right)
+\frac{1-xy}{xy}
+\\
+&=
+\frac{1}{x(1-xy)}
+\end{align*}
+and by symmetry,
+\begin{align*}
+\frac{\partial g}{\partial x} 
+&=
+\frac{1}{y(1-xy)}
+\end{align*}
+Therefore, by the delta method
+\[
+\sqrt{n} \{
+\text{logit}(\hat{\pi}_s\hat{\pi}_a)
+-
+\text{logit}(\pi_s\pi_a)
+\}
+\xrightarrow{D}
+N(0, \Sigma)
+\]
+where
+\begin{align*}
+\Sigma
+&=
+\nabla g(\pi_s, \pi_a)' I_1(\theta)^{-1} \nabla g(\pi_s, \pi_a)
+\\
+&=
+\begin{bmatrix}
+\frac{1}{\pi_s(1-\pi_s\pi_a)}
+&
+\frac{1}{\pi_a(1-\pi_s\pi_a)}
+\end{bmatrix}
+\begin{bmatrix}
+{\pi_s(1-\pi_s)}
+&
+0
+\\
+0
+&
+\frac{\pi_a(1-\pi_a)}{ \pi_s\pi_f}
+\end{bmatrix}
+\begin{bmatrix}
+\frac{1}{\pi_s(1-\pi_s\pi_a)}
+\\
+\frac{1}{\pi_a(1-\pi_s\pi_a)}
+\end{bmatrix}
+\\
+&=
+\frac{1 - \pi_s}{\pi_s(1-\pi_s\pi_a)^2}
++
+\frac{1 - \pi_a}{\pi_a\pi_s\pi_f(1-\pi_s\pi_a)^2}
+\end{align*}
+Notice that by composition of continuous functions,
+\[
+\hat{\Sigma} = 
+\frac{1 - \hat{\pi}_s}{\hat{\pi}_s(1-\hat{\pi}_s\hat{\pi}_a)^2}
++
+\frac{1 - \hat{\pi}_a}{\hat{\pi}_a\hat{\pi}_s\hat{\pi}_f(1-\hat{\pi}_s\hat{\pi}_a)^2}
+\xrightarrow{P}
+\frac{1 - \pi_s}{\pi_s(1-\pi_s\pi_a)^2}
++
+\frac{1 - \pi_a}{\pi_a\pi_s\pi_f(1-\pi_s\pi_a)^2}
+\]
+By Slutsky's theorem, 
+\[
+\hat{\Sigma}^{-1/2}
+\sqrt{n} \{
+\text{logit}(\hat{\pi}_s\hat{\pi}_a)
+-
+\text{logit}(\pi_s\pi_a)
+\}
+\xrightarrow{D}
+N(0, 1)
+\]
+Therefore, a 95\% CI for 
+$\text{logit}(\pi_s\pi_a)$
+is
+\begin{align*}
+\left[
+-1.96 \sqrt{\hat{\Sigma}/n} + \text{logit}(\hat{\pi}_s\hat{\pi}_a),  1.96 \sqrt{\hat{\Sigma}/n} + \text{logit}(\hat{\pi}_s\hat{\pi}_a)
+\right]
+\end{align*}
+Taking the inverse logit (the expit, which is an increasing function), a 95\% confidence interval for $\pi_s\pi_a$ is
+\begin{align*}
+\text{expit}\left(
+\left[
+-1.96 \sqrt{\hat{\Sigma}/n} + \text{logit}(\hat{\pi}_s\hat{\pi}_a), 
+1.96 \sqrt{\hat{\Sigma}/n} + \text{logit}(\hat{\pi}_s\hat{\pi}_a)
+\right]
+\right)
+\\
+=
+\left[
+\left(
+\exp\left\{ 
+-1.96 \sqrt{\hat{\Sigma}/n}
+\right\}
+\frac{\hat{\pi}_s\hat{\pi}_a}{1-\hat{\pi}_s\hat{\pi}_a}
+\right)/
+\left(
+1+\exp\left\{ 
+-1.96 \sqrt{\hat{\Sigma}/n}
+\right\}
+\frac{\hat{\pi}_s\hat{\pi}_a}{1-\hat{\pi}_s\hat{\pi}_a}
+\right),\right.
+\\
+\left.
+\left(
+\exp\left\{ 
+1.96 \sqrt{\hat{\Sigma}/n}
+\right\}
+\frac{\hat{\pi}_s\hat{\pi}_a}{1-\hat{\pi}_s\hat{\pi}_a}
+\right)/
+\left(
+1+\exp\left\{ 
+1.96 \sqrt{\hat{\Sigma}/n}
+\right\}
+\frac{\hat{\pi}_s\hat{\pi}_a}{1-\hat{\pi}_s\hat{\pi}_a}
+\right)
+\right]
+\\
+=
+\left[
+\frac{
+\hat{\pi}_s\hat{\pi}_a
+}
+{
+\exp\left\{ 
+1.96 \sqrt{\hat{\Sigma}/n}
+\right\} (1 - \hat{\pi}_s\hat{\pi}_a) + \hat{\pi}_s\hat{\pi}_a
+},
+\frac{
+\hat{\pi}_s\hat{\pi}_a
+}
+{
+\exp\left\{ 
+-1.96 \sqrt{\hat{\Sigma}/n}
+\right\} (1 - \hat{\pi}_s\hat{\pi}_a) + \hat{\pi}_s\hat{\pi}_a
+}
+\right]
+\end{align*}
+\end{proof}
+
+\end{enumerate}
+
+
+\end{document}
